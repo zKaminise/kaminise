@@ -1,0 +1,279 @@
+import { motion } from "framer-motion";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
+
+// Cases de sucesso - imagens placeholder (substitua pelas reais)
+const cases = [
+  {
+    id: 1,
+    title: "E-commerce Premium",
+    category: "Loja Virtual",
+    description: "Aumento de 340% nas vendas após o lançamento",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=2400&fit=crop",
+    stats: { conversao: "+340%", vendas: "R$ 2.5M" },
+  },
+  {
+    id: 2,
+    title: "Escritório de Advocacia",
+    category: "Site Institucional",
+    description: "Geração de 150+ leads qualificados por mês",
+    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=2400&fit=crop",
+    stats: { leads: "+150/mês", autoridade: "Top 5" },
+  },
+  {
+    id: 3,
+    title: "Clínica Odontológica",
+    category: "Landing Page",
+    description: "Redução de 60% no custo por aquisição",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=2400&fit=crop",
+    stats: { cpa: "-60%", agendamentos: "+200%" },
+  },
+  {
+    id: 4,
+    title: "Startup Tech",
+    category: "Sistema Web",
+    description: "MVP lançado em 4 semanas com alta escalabilidade",
+    image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=2400&fit=crop",
+    stats: { tempo: "4 semanas", usuarios: "10k+" },
+  },
+  {
+    id: 5,
+    title: "Restaurante Gourmet",
+    category: "Site + Delivery",
+    description: "Sistema integrado com pedidos online 24h",
+    image: "https://images.unsplash.com/photo-1522542550221-31fd8575f5a6?w=800&h=2400&fit=crop",
+    stats: { pedidos: "+400%", satisfacao: "4.9★" },
+  },
+  {
+    id: 6,
+    title: "Imobiliária Premium",
+    category: "Portal Imobiliário",
+    description: "Plataforma completa com busca inteligente",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=2400&fit=crop",
+    stats: { imoveis: "500+", vendas: "+180%" },
+  },
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
+interface CaseCardProps {
+  caseItem: typeof cases[0];
+  index: number;
+}
+
+const CaseCard = ({ caseItem, index }: CaseCardProps) => {
+  return (
+    <motion.div
+      variants={itemVariants}
+      className="group relative"
+    >
+      {/* Card Container */}
+      <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm transition-all duration-500 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/20">
+        
+        {/* Image Container - Scroll on hover */}
+        <div className="relative h-[280px] md:h-[320px] overflow-hidden">
+          {/* Browser mockup frame */}
+          <div className="absolute top-0 left-0 right-0 z-20 bg-background/95 backdrop-blur-sm border-b border-border/50 px-4 py-3 flex items-center gap-2">
+            <div className="flex gap-1.5">
+              <div className="w-3 h-3 rounded-full bg-red-500/80" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+              <div className="w-3 h-3 rounded-full bg-green-500/80" />
+            </div>
+            <div className="flex-1 ml-3">
+              <div className="bg-muted/50 rounded-md px-3 py-1 text-xs text-muted-foreground flex items-center gap-2 max-w-[200px]">
+                <span className="truncate">{caseItem.title.toLowerCase().replace(/\s+/g, '')}.com.br</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Scrolling image container */}
+          <div className="absolute inset-0 pt-12">
+            <div 
+              className="absolute inset-0 transition-transform duration-[3s] ease-in-out group-hover:-translate-y-[60%]"
+              style={{ willChange: 'transform' }}
+            >
+              <img
+                src={caseItem.image}
+                alt={caseItem.title}
+                className="w-full h-auto object-cover object-top"
+                style={{ minHeight: '300%' }}
+              />
+            </div>
+          </div>
+          
+          {/* Gradient overlay */}
+          <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
+          
+          {/* Hover overlay with CTA */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-end justify-center pb-6">
+            <motion.button
+              className="flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-medium shadow-lg"
+              initial={{ y: 20, opacity: 0 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span>Ver Projeto</span>
+              <ExternalLink className="w-4 h-4" />
+            </motion.button>
+          </div>
+        </div>
+        
+        {/* Content */}
+        <div className="p-6">
+          {/* Category badge */}
+          <span className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium mb-3">
+            {caseItem.category}
+          </span>
+          
+          {/* Title */}
+          <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors duration-300">
+            {caseItem.title}
+          </h3>
+          
+          {/* Description */}
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+            {caseItem.description}
+          </p>
+          
+          {/* Stats */}
+          <div className="flex gap-4">
+            {Object.entries(caseItem.stats).map(([key, value]) => (
+              <div key={key} className="flex flex-col">
+                <span className="text-lg font-bold text-accent">{value}</span>
+                <span className="text-xs text-muted-foreground capitalize">{key}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Number indicator */}
+        <div className="absolute top-16 right-4 text-6xl font-bold text-white/5 group-hover:text-accent/10 transition-colors duration-500 select-none pointer-events-none z-30">
+          0{index + 1}
+        </div>
+        
+        {/* Corner hover accent */}
+        <div className="absolute top-12 right-0 w-20 h-20 bg-gradient-to-bl from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      </div>
+    </motion.div>
+  );
+};
+
+const CasesSection = () => {
+  return (
+    <section className="py-20 md:py-32 bg-background relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px]" />
+      </div>
+      
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        {/* Header */}
+        <motion.div 
+          className="text-center mb-16 md:mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.span 
+            className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            Cases de Sucesso
+          </motion.span>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+            Resultados que{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-accent via-cyan-400 to-accent">
+                falam por si
+              </span>
+              <motion.span 
+                className="absolute bottom-2 left-0 w-full h-3 bg-accent/20 -z-0"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              />
+            </span>
+          </h2>
+          
+          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
+            Cada projeto é uma história de transformação. Conheça alguns dos negócios 
+            que escalamos com sites de alta performance.
+          </p>
+        </motion.div>
+
+        {/* Cases Grid */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {cases.map((caseItem, index) => (
+            <CaseCard key={caseItem.id} caseItem={caseItem} index={index} />
+          ))}
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div 
+          className="text-center mt-16 md:mt-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <p className="text-muted-foreground mb-6 text-lg">
+            Quer ver seu negócio aqui?{" "}
+            <span className="text-accent font-medium">Vamos conversar.</span>
+          </p>
+          
+          <motion.a
+            href="https://wa.me/5511999999999"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-3 text-accent font-medium text-lg hover:gap-4 transition-all duration-300"
+            whileHover={{ x: 5 }}
+          >
+            <span className="relative">
+              Iniciar meu projeto
+              <span className="absolute bottom-0 left-0 w-full h-px bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </span>
+            <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
+          </motion.a>
+        </motion.div>
+      </div>
+      
+      {/* Bottom decoration line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+    </section>
+  );
+};
+
+export default CasesSection;
