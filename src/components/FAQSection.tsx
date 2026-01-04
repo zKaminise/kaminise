@@ -193,7 +193,11 @@ const FAQSection = () => {
         >
           <p className="text-foreground mb-8 text-2xl md:text-3xl lg:text-4xl font-semibold max-w-3xl mx-auto leading-snug">
             Se chegou até aqui acredito que esteja decidido a{" "}
-            <span className="text-accent">elevar o nível da sua presença digital</span>
+            <span className="relative inline-block">
+              <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-accent via-cyan-400 to-accent">
+                elevar o nível da sua presença digital
+              </span>
+            </span>
           </p>
           
           <motion.a
