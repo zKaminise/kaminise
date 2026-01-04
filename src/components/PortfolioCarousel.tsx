@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import whatsappIcon from "@/assets/whatsapp-icon.png";
 
 // Placeholder images - will be replaced with actual portfolio images
 const portfolioImages = [
@@ -121,13 +122,14 @@ const PortfolioCarousel = () => {
           href="https://wa.me/5511999999999?text=Olá! Vi o portfólio de vocês e gostaria de um projeto exclusivo para meu negócio."
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground rounded-full font-semibold text-lg shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300 group"
-          whileHover={{ scale: 1.05 }}
+          className="group relative inline-flex items-center gap-3 bg-gradient-cta text-accent-foreground font-bold px-10 py-5 rounded-lg overflow-hidden shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/40"
+          whileHover={{ scale: 1.05, y: -4 }}
           whileTap={{ scale: 0.98 }}
         >
-          <MessageCircle className="w-5 h-5" />
-          <span>Quero meu projeto agora</span>
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12" />
+          <img src={whatsappIcon} alt="WhatsApp" className="w-6 h-6 relative z-10 group-hover:scale-110 transition-transform" />
+          <span className="relative z-10 text-lg">QUERO MEU PROJETO AGORA</span>
+          <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
         </motion.a>
       </motion.div>
 
