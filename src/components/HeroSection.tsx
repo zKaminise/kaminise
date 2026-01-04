@@ -152,7 +152,7 @@ const HeroSection = () => {
               asChild
             >
               <a
-                href="https://wa.me/5511999999999"
+                href="https://wa.me/5534998275292?text=Vim%20através%20do%20site%20e%20gostaria%20de%20atendimento"
                 target="_blank"
                 rel="noopener noreferrer"
               >

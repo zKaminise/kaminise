@@ -191,13 +191,13 @@ const FAQSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          <p className="text-muted-foreground mb-6 text-lg md:text-xl max-w-2xl mx-auto">
+          <p className="text-foreground mb-8 text-2xl md:text-3xl lg:text-4xl font-semibold max-w-3xl mx-auto leading-snug">
             Se chegou até aqui acredito que esteja decidido a{" "}
-            <span className="text-accent font-medium">elevar o nível da sua presença digital</span>
+            <span className="text-accent">elevar o nível da sua presença digital</span>
           </p>
           
           <motion.a
-            href="https://wa.me/5511999999999?text=Olá! Tenho algumas dúvidas sobre o desenvolvimento de sites."
+            href="https://wa.me/5534998275292?text=Vim%20através%20do%20site%20e%20gostaria%20de%20atendimento"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-3 bg-gradient-cta text-accent-foreground font-bold px-10 py-5 rounded-full overflow-hidden shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/40"
