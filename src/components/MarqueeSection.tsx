@@ -25,7 +25,7 @@ const MarqueeSection = () => {
   );
 
   return (
-    <section className="w-full py-6 bg-secondary/50 border-y border-border overflow-hidden">
+    <section className="w-full py-4 bg-secondary/80 backdrop-blur-sm border-y border-border overflow-hidden sticky top-0 z-50">
       <div className="flex animate-marquee">
         <div className="flex items-center">
           <MarqueeContent />
