@@ -2,6 +2,7 @@ import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DeviceMockup from "./DeviceMockup";
 import SocialProof from "./SocialProof";
+import logo from "@/assets/logo.png";
 
 const HeroSection = () => {
   return (
@@ -17,11 +18,8 @@ const HeroSection = () => {
             style={{ animationDelay: "0.1s" }}
           >
             {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                <span className="text-accent-foreground font-bold text-lg">A</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">Astro Sites</span>
+            <div className="flex items-center">
+              <img src={logo} alt="Gabriel Misao" className="h-12 md:h-16 w-auto" />
             </div>
 
             {/* Headline */}
