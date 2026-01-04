@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowUpRight, MessageCircle, ArrowRight } from "lucide-react";
 import case01 from "@/assets/case-01.png";
 import case02 from "@/assets/case-02.png";
 import case03 from "@/assets/case-03.png";
@@ -272,17 +272,16 @@ const CasesSection = () => {
           </p>
           
           <motion.a
-            href="https://wa.me/5511999999999"
+            href="https://wa.me/5511999999999?text=Olá! Vi os cases de sucesso de vocês e quero um site assim para meu negócio!"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 text-accent font-medium text-lg hover:gap-4 transition-all duration-300"
-            whileHover={{ x: 5 }}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground rounded-full font-semibold text-lg shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300 group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span className="relative">
-              Iniciar meu projeto
-              <span className="absolute bottom-0 left-0 w-full h-px bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            </span>
-            <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
+            <MessageCircle className="w-5 h-5" />
+            <span>Quero resultados assim</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </motion.a>
         </motion.div>
       </div>
