@@ -2,15 +2,26 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import whatsappIcon from "@/assets/whatsapp-icon.png";
+import portfolio1 from "@/assets/portfolio-1.png";
+import portfolio2 from "@/assets/portfolio-2.png";
+import portfolio3 from "@/assets/portfolio-3.png";
+import portfolio4 from "@/assets/portfolio-4.png";
+import portfolio5 from "@/assets/portfolio-5.png";
+import portfolio6 from "@/assets/portfolio-6.png";
+import portfolio7 from "@/assets/portfolio-7.png";
+import portfolio8 from "@/assets/portfolio-8.png";
+import portfolio9 from "@/assets/portfolio-9.png";
 
-// Placeholder images - will be replaced with actual portfolio images
 const portfolioImages = [
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&h=500&fit=crop",
-  "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=500&fit=crop",
+  portfolio1,
+  portfolio2,
+  portfolio3,
+  portfolio4,
+  portfolio5,
+  portfolio6,
+  portfolio7,
+  portfolio8,
+  portfolio9,
 ];
 
 const PortfolioCarousel = () => {
