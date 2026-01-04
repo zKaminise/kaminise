@@ -2,8 +2,8 @@ import deviceMockup from "@/assets/device-mockup.png";
 
 const DeviceMockup = () => {
   return (
-    <div className="relative w-full max-w-2xl mx-auto">
-      <div className="relative animate-float">
+    <div className="relative w-full max-w-4xl mx-auto">
+      <div className="relative animate-float scale-110 lg:scale-125">
         <img
           src={deviceMockup}
           alt="Website preview on devices"
