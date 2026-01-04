@@ -211,7 +211,7 @@ const BriefingSection = () => {
           </p>
           
           <motion.a
-            href="https://wa.me/5511999999999?text=Olá! Gostaria de iniciar meu projeto com vocês."
+            href="https://wa.me/5534998275292?text=Vim%20através%20do%20site%20e%20gostaria%20de%20atendimento"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-3 bg-gradient-cta text-accent-foreground font-bold px-10 py-5 rounded-full overflow-hidden shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/40"
