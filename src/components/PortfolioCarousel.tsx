@@ -24,31 +24,45 @@ const PortfolioCarousel = () => {
       <div className="absolute right-0 top-0 bottom-0 w-48 md:w-72 z-10 pointer-events-none bg-gradient-to-l from-background via-background/80 to-transparent" />
       
       {/* Section Header */}
-      <div className="container mx-auto px-4 mb-12 text-center relative z-20">
-        <motion.span
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+      <div className="container mx-auto px-4 md:px-6 mb-16 md:mb-20 text-center relative z-20">
+        <motion.span 
+          className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="inline-block px-4 py-1.5 bg-primary/10 rounded-full text-primary text-sm font-medium mb-4"
+          transition={{ delay: 0.2 }}
         >
           Portfólio
         </motion.span>
+        
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
         >
-          Projetos que <span className="text-primary">Transformam</span>
+          Projetos que{" "}
+          <span className="relative inline-block">
+            <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-accent via-cyan-400 to-accent">
+              Transformam
+            </span>
+            <motion.span 
+              className="absolute bottom-2 left-0 w-full h-3 bg-accent/20 -z-0"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            />
+          </span>
         </motion.h2>
+        
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-muted-foreground max-w-2xl mx-auto"
+          className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto"
         >
           Conheça alguns dos projetos que desenvolvemos para nossos clientes
         </motion.p>
