@@ -22,8 +22,8 @@ const cases = [
   },
   {
     id: 2,
-    title: "Odontologia FL",
-    category: "Site Institucional",
+    title: "Odontologia Flavia",
+    category: "Landing Page",
     description: "Clínica odontológica especializada em transformar sorrisos",
     image: case02,
     displayUrl: "odontologiafl.com.br",
@@ -31,7 +31,7 @@ const cases = [
   },
   {
     id: 3,
-    title: "Kamini Script",
+    title: "Leandro Kaminise",
     category: "Landing Page",
     description: "Automação de agendamentos via WhatsApp para clínicas",
     image: case03,
@@ -41,7 +41,7 @@ const cases = [
   {
     id: 4,
     title: "Clube das Zizas",
-    category: "Plataforma de Membros",
+    category: "Landing Page",
     description: "Comunidade feminina de desenvolvimento pessoal",
     image: case04,
     displayUrl: "clube-zizas.com.br",
@@ -59,7 +59,7 @@ const cases = [
   {
     id: 6,
     title: "Saldanha Móveis",
-    category: "E-commerce",
+    category: "Landing Page",
     description: "Móveis sofisticados para espaços de beleza",
     image: case06,
     displayUrl: "saldanhamoveis.com.br",
@@ -99,24 +99,19 @@ const itemVariants = {
 };
 
 interface CaseCardProps {
-  caseItem: typeof cases[0];
+  caseItem: (typeof cases)[0];
   index: number;
 }
 
 const CaseCard = ({ caseItem, index }: CaseCardProps) => {
   const handleCardClick = () => {
-    window.open(caseItem.url, '_blank', 'noopener,noreferrer');
+    window.open(caseItem.url, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <motion.div
-      variants={itemVariants}
-      className="group relative cursor-pointer"
-      onClick={handleCardClick}
-    >
+    <motion.div variants={itemVariants} className="group relative cursor-pointer" onClick={handleCardClick}>
       {/* Card Container */}
       <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm transition-all duration-500 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/20">
-        
         {/* Image Container - Scroll on hover */}
         <div className="relative h-[280px] md:h-[320px] overflow-hidden">
           {/* Browser mockup frame */}
@@ -132,25 +127,25 @@ const CaseCard = ({ caseItem, index }: CaseCardProps) => {
               </div>
             </div>
           </div>
-          
+
           {/* Scrolling image container */}
           <div className="absolute inset-0 pt-12">
-            <div 
+            <div
               className="absolute inset-0 transition-transform duration-[3s] ease-in-out group-hover:-translate-y-[60%]"
-              style={{ willChange: 'transform' }}
+              style={{ willChange: "transform" }}
             >
               <img
                 src={caseItem.image}
                 alt={caseItem.title}
                 className="w-full h-auto object-cover object-top"
-                style={{ minHeight: '300%' }}
+                style={{ minHeight: "300%" }}
               />
             </div>
           </div>
-          
+
           {/* Gradient overlay */}
           <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-card to-transparent z-10 pointer-events-none" />
-          
+
           {/* Hover overlay with CTA */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-end justify-center pb-6">
             <motion.div
@@ -164,30 +159,28 @@ const CaseCard = ({ caseItem, index }: CaseCardProps) => {
             </motion.div>
           </div>
         </div>
-        
+
         {/* Content */}
         <div className="p-6">
           {/* Category badge */}
           <span className="inline-block px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium mb-3">
             {caseItem.category}
           </span>
-          
+
           {/* Title */}
           <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors duration-300">
             {caseItem.title}
           </h3>
-          
+
           {/* Description */}
-          <p className="text-muted-foreground text-sm line-clamp-2">
-            {caseItem.description}
-          </p>
+          <p className="text-muted-foreground text-sm line-clamp-2">{caseItem.description}</p>
         </div>
-        
+
         {/* Number indicator */}
         <div className="absolute top-16 right-4 text-6xl font-bold text-white/5 group-hover:text-accent/10 transition-colors duration-500 select-none pointer-events-none z-30">
           0{index + 1}
         </div>
-        
+
         {/* Corner hover accent */}
         <div className="absolute top-12 right-0 w-20 h-20 bg-gradient-to-bl from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
@@ -204,17 +197,17 @@ const CasesSection = () => {
         <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[100px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[150px]" />
       </div>
-      
+
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <motion.span 
+          <motion.span
             className="inline-block px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -223,14 +216,14 @@ const CasesSection = () => {
           >
             Cases de Sucesso
           </motion.span>
-          
+
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
             Resultados que{" "}
             <span className="relative inline-block">
               <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-accent via-cyan-400 to-accent">
                 falam por si
               </span>
-              <motion.span 
+              <motion.span
                 className="absolute bottom-2 left-0 w-full h-3 bg-accent/20 -z-0"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
@@ -239,15 +232,15 @@ const CasesSection = () => {
               />
             </span>
           </h2>
-          
+
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-            Cada projeto é uma história de transformação. Conheça alguns dos negócios 
-            que escalamos com sites de alta performance.
+            Cada projeto é uma história de transformação. Conheça alguns dos negócios que escalamos com sites de alta
+            performance.
           </p>
         </motion.div>
 
         {/* Cases Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
@@ -260,7 +253,7 @@ const CasesSection = () => {
         </motion.div>
 
         {/* Bottom CTA */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16 md:mt-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -268,10 +261,9 @@ const CasesSection = () => {
           transition={{ delay: 0.3 }}
         >
           <p className="text-muted-foreground mb-6 text-lg">
-            Quer ver seu negócio aqui?{" "}
-            <span className="text-accent font-medium">Vamos conversar.</span>
+            Quer ver seu negócio aqui? <span className="text-accent font-medium">Vamos conversar.</span>
           </p>
-          
+
           <motion.a
             href="https://wa.me/5534998275292?text=Vim%20através%20do%20site%20e%20gostaria%20de%20atendimento"
             target="_blank"
@@ -281,13 +273,17 @@ const CasesSection = () => {
             whileTap={{ scale: 0.98 }}
           >
             <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12" />
-            <img src={whatsappIcon} alt="WhatsApp" className="w-5 h-5 md:w-6 md:h-6 relative z-10 group-hover:scale-110 transition-transform" />
+            <img
+              src={whatsappIcon}
+              alt="WhatsApp"
+              className="w-5 h-5 md:w-6 md:h-6 relative z-10 group-hover:scale-110 transition-transform"
+            />
             <span className="relative z-10 text-sm md:text-lg">QUERO RESULTADOS ASSIM</span>
             <ArrowRight className="w-4 h-4 md:w-5 md:h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
           </motion.a>
         </motion.div>
       </div>
-      
+
       {/* Bottom decoration line */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
     </section>

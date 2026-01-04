@@ -32,10 +32,7 @@ const HeroSection = () => {
 
       {/* 3D Rotating Cube */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <motion.div
-          className="relative w-64 h-64 md:w-96 md:h-96"
-          style={{ perspective: "1000px" }}
-        >
+        <motion.div className="relative w-64 h-64 md:w-96 md:h-96" style={{ perspective: "1000px" }}>
           <motion.div
             className="w-full h-full"
             style={{ transformStyle: "preserve-3d" }}
@@ -74,11 +71,7 @@ const HeroSection = () => {
       <div className="container relative z-10 py-12 md:py-20">
         <div className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <img src={logo} alt="Gabriel Misao" className="h-12 md:h-16 w-auto" />
           </motion.div>
 
@@ -89,9 +82,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-accent/30 bg-accent/10 backdrop-blur-sm"
           >
-            <span className="text-accent font-semibold text-sm tracking-wider uppercase">
-              Agência Digital Premium
-            </span>
+            <span className="text-accent font-semibold text-sm tracking-wider uppercase">Agência Premium</span>
           </motion.div>
 
           {/* Headline */}
@@ -101,8 +92,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-foreground"
           >
-            Pare de perder vendas{" "}
-            <span className="text-accent">por não ter</span>{" "}
+            Pare de perder vendas <span className="text-accent">por não ter</span>{" "}
             <span className="text-accent">um site profissional.</span>
           </motion.h1>
 
@@ -113,8 +103,8 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Criamos sites e identidades visuais que elevam sua marca ao próximo nível. 
-            Sites feitos sob medida por especialistas de alto nível.
+            Criamos sites e identidades visuais que elevam sua marca ao próximo nível. Sites feitos sob medida por
+            especialistas de alto nível.
           </motion.p>
 
           {/* Feature badges */}
@@ -129,10 +119,7 @@ const HeroSection = () => {
               { icon: Palette, text: "Identidade Visual" },
               { icon: Layout, text: "Design Criativo" },
             ].map((feature, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2 text-muted-foreground"
-              >
+              <div key={index} className="flex items-center gap-2 text-muted-foreground">
                 <feature.icon className="w-5 h-5 text-accent" />
                 <span className="text-sm md:text-base">{feature.text}</span>
               </div>
