@@ -60,7 +60,7 @@ const HeroSection = () => {
 
           {/* Right Column - Device Mockup */}
           <div 
-            className="relative animate-fade-up lg:pl-8"
+            className="relative animate-fade-up flex items-center justify-center lg:justify-end overflow-visible"
             style={{ animationDelay: "0.3s" }}
           >
             <DeviceMockup />
