@@ -173,7 +173,7 @@ const HeroSection = () => {
                   <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span>mais de dez negócios atendidos</span>
+              <span>+10 empresas satisfeitas</span>
             </div>
           </motion.div>
         </div>
