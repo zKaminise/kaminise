@@ -1,8 +1,8 @@
-import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DeviceMockup from "./DeviceMockup";
 import SocialProof from "./SocialProof";
 import logo from "@/assets/logo.png";
+import whatsappIcon from "@/assets/whatsapp-icon.png";
 
 const HeroSection = () => {
   return (
@@ -48,7 +48,7 @@ const HeroSection = () => {
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
-                  <MessageCircle className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                  <img src={whatsappIcon} alt="WhatsApp" className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                   QUERO UM ORÇAMENTO
                 </a>
               </Button>
