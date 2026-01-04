@@ -1,16 +1,15 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Monitor, ShoppingCart, Zap, Rocket } from "lucide-react";
-import mockupSites from "@/assets/mockup-sites.png";
+import serviceSites from "@/assets/service-sites.png";
 import mockupLoja from "@/assets/mockup-loja.png";
 import mockupSistema from "@/assets/mockup-sistema.png";
-import mockupLanding from "@/assets/mockup-landing.png";
-
+import serviceLanding from "@/assets/service-landing.png";
 const services = [
   {
     id: 1,
     title: "Sites Institucionais",
     description: "Transmita autoridade e conquiste clientes com um site moderno, rápido e estratégico.",
-    image: mockupSites,
+    image: serviceSites,
     icon: Monitor,
   },
   {
@@ -31,7 +30,7 @@ const services = [
     id: 4,
     title: "Landing Pages",
     description: "Páginas focadas em alta conversão. Ideal para campanhas de tráfego pago no Google, Facebook e Instagram.",
-    image: mockupLanding,
+    image: serviceLanding,
     icon: Rocket,
   },
 ];
