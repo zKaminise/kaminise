@@ -16,7 +16,8 @@ const cases = [
     category: "Site Institucional",
     description: "Consultoria em gestão de pessoas e desenvolvimento organizacional",
     image: case01,
-    url: "#",
+    displayUrl: "alcarhuma.com.br",
+    url: "https://alcarhuma.com.br",
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const cases = [
     category: "Site Institucional",
     description: "Clínica odontológica especializada em transformar sorrisos",
     image: case02,
+    displayUrl: "odontologiafl.com.br",
     url: "https://www.odontologiafl.com.br",
   },
   {
@@ -32,6 +34,7 @@ const cases = [
     category: "Landing Page",
     description: "Automação de agendamentos via WhatsApp para clínicas",
     image: case03,
+    displayUrl: "script.kaminisegrowth.com.br",
     url: "https://script.kaminisegrowth.com.br",
   },
   {
@@ -40,6 +43,7 @@ const cases = [
     category: "Plataforma de Membros",
     description: "Comunidade feminina de desenvolvimento pessoal",
     image: case04,
+    displayUrl: "clube-zizas.com.br",
     url: "https://clube-zizas.vercel.app",
   },
   {
@@ -48,6 +52,7 @@ const cases = [
     category: "Site Institucional",
     description: "Academia de natação e hidroginástica com 30 anos de excelência",
     image: case05,
+    displayUrl: "acquagyn.com.br",
     url: "https://acquagyn.com.br",
   },
   {
@@ -56,6 +61,7 @@ const cases = [
     category: "E-commerce",
     description: "Móveis sofisticados para espaços de beleza",
     image: case06,
+    displayUrl: "saldanhamoveis.com.br",
     url: "https://saldanhamoveis.com.br",
   },
   {
@@ -64,6 +70,7 @@ const cases = [
     category: "Landing Page",
     description: "Plataforma de autodescoberta e consciência de si",
     image: case07,
+    displayUrl: "ecosdaalma.com.br",
     url: "https://ecosdaalma.com.br",
   },
 ];
@@ -96,10 +103,15 @@ interface CaseCardProps {
 }
 
 const CaseCard = ({ caseItem, index }: CaseCardProps) => {
+  const handleCardClick = () => {
+    window.open(caseItem.url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <motion.div
       variants={itemVariants}
-      className="group relative"
+      className="group relative cursor-pointer"
+      onClick={handleCardClick}
     >
       {/* Card Container */}
       <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm transition-all duration-500 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/20">
@@ -115,7 +127,7 @@ const CaseCard = ({ caseItem, index }: CaseCardProps) => {
             </div>
             <div className="flex-1 ml-3">
               <div className="bg-muted/50 rounded-md px-3 py-1 text-xs text-muted-foreground flex items-center gap-2 max-w-[200px]">
-                <span className="truncate">{caseItem.title.toLowerCase().replace(/\s+/g, '')}.com.br</span>
+                <span className="truncate">{caseItem.displayUrl}</span>
               </div>
             </div>
           </div>
@@ -140,10 +152,7 @@ const CaseCard = ({ caseItem, index }: CaseCardProps) => {
           
           {/* Hover overlay with CTA */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-end justify-center pb-6">
-            <motion.a
-              href={caseItem.url}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div
               className="flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-medium shadow-lg"
               initial={{ y: 20, opacity: 0 }}
               whileHover={{ scale: 1.05 }}
@@ -151,7 +160,7 @@ const CaseCard = ({ caseItem, index }: CaseCardProps) => {
             >
               <span>Ver Projeto</span>
               <ExternalLink className="w-4 h-4" />
-            </motion.a>
+            </motion.div>
           </div>
         </div>
         
