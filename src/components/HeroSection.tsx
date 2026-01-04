@@ -149,7 +149,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="cta"
-              className="group text-base md:text-lg px-8 py-6 rounded-full"
+              className="group text-sm md:text-lg px-6 md:px-8 py-4 md:py-6 rounded-full"
               asChild
             >
               <a
@@ -160,7 +160,7 @@ const HeroSection = () => {
                 <img
                   src={whatsappIcon}
                   alt="WhatsApp"
-                  className="w-6 h-6 mr-2 group-hover:scale-110 transition-transform"
+                  className="w-5 h-5 md:w-6 md:h-6 mr-2 group-hover:scale-110 transition-transform"
                 />
                 QUERO UM ORÇAMENTO
               </a>
