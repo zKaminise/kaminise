@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 import whatsappIcon from "@/assets/whatsapp-icon.png";
-import { Sparkles, Palette, Layout } from "lucide-react";
+import { Sparkles, Palette, Layout, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -144,6 +144,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
+            className="flex flex-col items-center gap-4"
           >
             <Button
               size="lg"
@@ -164,6 +165,16 @@ const HeroSection = () => {
                 QUERO UM ORÇAMENTO
               </a>
             </Button>
+
+            {/* Social proof */}
+            <div className="flex items-center gap-2 text-muted-foreground text-sm">
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <span>mais de dez negócios atendidos</span>
+            </div>
           </motion.div>
         </div>
       </div>
