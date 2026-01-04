@@ -268,7 +268,7 @@ const ServicesSection = () => {
             href="https://wa.me/5511999999999"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-3 bg-gradient-cta text-accent-foreground font-bold px-10 py-5 rounded-lg overflow-hidden shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/40"
+            className="group relative inline-flex items-center gap-3 bg-gradient-cta text-accent-foreground font-bold px-10 py-5 rounded-full overflow-hidden shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/40"
             whileHover={{ scale: 1.05, y: -4 }}
             whileTap={{ scale: 0.98 }}
           >
