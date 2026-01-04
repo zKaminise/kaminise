@@ -32,9 +32,9 @@ const PortfolioCarousel = () => {
 
   return (
     <section className="py-20 bg-background overflow-hidden relative">
-      {/* Gradient overlays for blur effect on edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-48 md:w-72 z-10 pointer-events-none bg-gradient-to-r from-background via-background/80 to-transparent" />
-      <div className="absolute right-0 top-0 bottom-0 w-48 md:w-72 z-10 pointer-events-none bg-gradient-to-l from-background via-background/80 to-transparent" />
+      {/* Gradient overlays for blur effect on edges - smaller on mobile */}
+      <div className="absolute left-0 top-0 bottom-0 w-8 md:w-72 z-10 pointer-events-none bg-gradient-to-r from-background via-background/60 to-transparent" />
+      <div className="absolute right-0 top-0 bottom-0 w-8 md:w-72 z-10 pointer-events-none bg-gradient-to-l from-background via-background/60 to-transparent" />
       
       {/* Section Header */}
       <div className="container mx-auto px-4 md:px-6 mb-16 md:mb-20 text-center relative z-20">
@@ -133,14 +133,14 @@ const PortfolioCarousel = () => {
           href="https://wa.me/5534998275292?text=Vim%20através%20do%20site%20e%20gostaria%20de%20atendimento"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative inline-flex items-center gap-3 bg-gradient-cta text-accent-foreground font-bold px-10 py-5 rounded-full overflow-hidden shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/40"
+          className="group relative inline-flex items-center gap-2 md:gap-3 bg-gradient-cta text-accent-foreground font-bold px-6 md:px-10 py-4 md:py-5 rounded-full overflow-hidden shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/40"
           whileHover={{ scale: 1.05, y: -4 }}
           whileTap={{ scale: 0.98 }}
         >
           <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12" />
-          <img src={whatsappIcon} alt="WhatsApp" className="w-6 h-6 relative z-10 group-hover:scale-110 transition-transform" />
-          <span className="relative z-10 text-lg">QUERO MEU PROJETO AGORA</span>
-          <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+          <img src={whatsappIcon} alt="WhatsApp" className="w-5 h-5 md:w-6 md:h-6 relative z-10 group-hover:scale-110 transition-transform" />
+          <span className="relative z-10 text-sm md:text-lg">QUERO MEU PROJETO AGORA</span>
+          <ArrowRight className="w-4 h-4 md:w-5 md:h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
         </motion.a>
       </motion.div>
 
