@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, ShoppingCart, Monitor, Rocket } from "lucide-react";
+import { ArrowRight, Monitor, ShoppingCart, Zap, Rocket } from "lucide-react";
 import mockupSites from "@/assets/mockup-sites.png";
 import mockupLoja from "@/assets/mockup-loja.png";
 import mockupSistema from "@/assets/mockup-sistema.png";
@@ -12,9 +12,6 @@ const services = [
     description: "Transmita autoridade e conquiste clientes com um site moderno, rápido e estratégico.",
     image: mockupSites,
     icon: Monitor,
-    gradient: "from-blue-500/20 to-cyan-500/20",
-    accent: "group-hover:text-cyan-400",
-    featured: true,
   },
   {
     id: 2,
@@ -22,9 +19,6 @@ const services = [
     description: "Vendas acontecendo 24h por dia com uma loja profissional, segura e feita para converter.",
     image: mockupLoja,
     icon: ShoppingCart,
-    gradient: "from-purple-500/20 to-pink-500/20",
-    accent: "group-hover:text-purple-400",
-    featured: false,
   },
   {
     id: 3,
@@ -32,9 +26,6 @@ const services = [
     description: "Soluções personalizadas para automatizar processos e escalar seu negócio.",
     image: mockupSistema,
     icon: Zap,
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    accent: "group-hover:text-emerald-400",
-    featured: false,
   },
   {
     id: 4,
@@ -42,9 +33,6 @@ const services = [
     description: "Páginas focadas em alta conversão. Ideal para campanhas de tráfego pago no Google, Facebook e Instagram.",
     image: mockupLanding,
     icon: Rocket,
-    gradient: "from-orange-500/20 to-amber-500/20",
-    accent: "group-hover:text-orange-400",
-    featured: true,
   },
 ];
 
@@ -70,107 +58,117 @@ const itemVariants = {
   },
 };
 
-const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
+interface ServiceCardProps {
+  service: typeof services[0];
+  isLarge: boolean;
+  imagePosition: "right" | "left";
+}
+
+const ServiceCard = ({ service, isLarge, imagePosition }: ServiceCardProps) => {
   const Icon = service.icon;
-  const isEven = index % 2 === 0;
   
   return (
     <motion.div
       variants={itemVariants}
-      className={`
-        group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm
-        transition-all duration-500 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/10
-        ${service.featured ? "md:col-span-2 md:row-span-1" : ""}
-      `}
+      className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm transition-all duration-500 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/10 h-full"
     >
       {/* Animated background gradient */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       
-      {/* Content container */}
-      <div className={`relative z-10 flex flex-col ${service.featured ? "md:flex-row" : ""} h-full min-h-[380px] md:min-h-[420px]`}>
+      {/* Content */}
+      <div className={`relative z-10 flex flex-col ${isLarge ? "md:flex-row" : ""} h-full min-h-[400px]`}>
         
         {/* Text Content */}
-        <div className={`p-6 md:p-8 flex flex-col justify-center ${service.featured ? "md:w-1/2" : ""}`}>
-          {/* Icon with animated ring */}
+        <div className={`
+          p-6 md:p-8 flex flex-col justify-center
+          ${isLarge ? "md:w-[45%]" : "w-full"}
+          ${isLarge && imagePosition === "left" ? "md:order-2" : ""}
+        `}>
+          {/* Icon */}
           <div className="relative w-14 h-14 mb-6">
             <div className="absolute inset-0 rounded-xl bg-accent/20 group-hover:scale-110 transition-transform duration-500" />
-            <div className="absolute inset-0 rounded-xl bg-accent/10 group-hover:scale-125 group-hover:opacity-0 transition-all duration-700" />
             <div className="relative w-full h-full rounded-xl bg-gradient-to-br from-accent/30 to-accent/10 flex items-center justify-center">
-              <Icon className={`w-7 h-7 text-accent transition-colors duration-300 ${service.accent}`} />
+              <Icon className="w-7 h-7 text-accent" />
             </div>
           </div>
           
-          {/* Title with animated underline */}
+          {/* Title */}
           <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 relative inline-block">
             {service.title}
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-500" />
           </h3>
           
           {/* Description */}
-          <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6 max-w-md">
+          <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6">
             {service.description}
           </p>
           
-          {/* CTA Button */}
-          <div className="mt-auto">
-            <button className="inline-flex items-center gap-2 text-accent font-medium group/btn">
-              <span className="relative">
-                Saiba mais
-                <span className="absolute bottom-0 left-0 w-full h-px bg-accent scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left" />
-              </span>
-              <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-            </button>
-          </div>
+          {/* CTA */}
+          <button className="inline-flex items-center gap-2 text-accent font-medium group/btn w-fit">
+            <span className="relative">
+              Saiba mais
+              <span className="absolute bottom-0 left-0 w-full h-px bg-accent scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left" />
+            </span>
+            <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+          </button>
         </div>
         
-        {/* Image Section */}
-        <div className={`relative ${service.featured ? "md:w-1/2" : ""} flex-1 overflow-hidden`}>
-          {/* Decorative elements */}
-          <div className="absolute top-4 right-4 w-20 h-20 rounded-full bg-accent/5 blur-2xl group-hover:scale-150 transition-transform duration-700" />
-          <div className="absolute bottom-4 left-4 w-32 h-32 rounded-full bg-accent/5 blur-3xl group-hover:scale-150 transition-transform duration-700" />
-          
-          {/* Image container with perspective effect */}
+        {/* Image Section - Only for large cards */}
+        {isLarge && (
           <div className={`
-            absolute inset-0 flex items-end justify-center
-            ${isEven ? "md:justify-end" : "md:justify-start"}
-            p-4 md:p-6
+            relative md:w-[55%] flex-1 overflow-hidden
+            ${imagePosition === "left" ? "md:order-1" : ""}
           `}>
-            <motion.div
-              className="relative w-full max-w-[280px] md:max-w-[340px]"
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: isEven ? -5 : 5,
-                z: 50,
-              }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              style={{ perspective: 1000 }}
-            >
-              {/* Glow effect behind image */}
-              <div className="absolute inset-0 bg-accent/20 blur-2xl rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-              
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-auto rounded-lg shadow-2xl shadow-black/50 border border-white/10"
-              />
-              
-              {/* Reflection effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
+            {/* Glow effects */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-accent/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            
+            {/* Image */}
+            <div className="absolute inset-0 flex items-center justify-center p-6">
+              <motion.div
+                className="relative w-full h-full"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                />
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </motion.div>
+            </div>
           </div>
-          
-          {/* Bottom gradient fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-card/80 to-transparent pointer-events-none" />
-        </div>
+        )}
+        
+        {/* Image for small cards - positioned better */}
+        {!isLarge && (
+          <div className="relative flex-1 overflow-hidden min-h-[200px]">
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <motion.div
+                className="relative w-full max-w-[280px]"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
+                <div className="absolute inset-0 bg-accent/10 blur-2xl rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-auto object-contain drop-shadow-xl rounded-lg"
+                />
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </div>
+      
+      {/* Number indicator */}
+      <div className="absolute top-4 right-4 text-7xl font-bold text-white/5 group-hover:text-accent/10 transition-colors duration-500 select-none pointer-events-none">
+        0{service.id}
       </div>
       
       {/* Corner accent */}
       <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      
-      {/* Number indicator */}
-      <div className="absolute top-4 right-4 text-7xl font-bold text-white/5 group-hover:text-accent/10 transition-colors duration-500 select-none">
-        0{service.id}
-      </div>
     </motion.div>
   );
 };
@@ -185,7 +183,7 @@ const ServicesSection = () => {
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        {/* Header with animated elements */}
+        {/* Header */}
         <motion.div 
           className="text-center mb-16 md:mb-24"
           initial={{ opacity: 0, y: 30 }}
@@ -224,17 +222,33 @@ const ServicesSection = () => {
           </p>
         </motion.div>
 
-        {/* Cards Grid with stagger animation */}
+        {/* Cards Grid - 65/35 layout */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 md:mb-24"
+          className="space-y-6 mb-16 md:mb-24"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          {services.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
-          ))}
+          {/* First row: 65% / 35% */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div className="md:col-span-8">
+              <ServiceCard service={services[0]} isLarge={true} imagePosition="right" />
+            </div>
+            <div className="md:col-span-4">
+              <ServiceCard service={services[1]} isLarge={false} imagePosition="right" />
+            </div>
+          </div>
+          
+          {/* Second row: 35% / 65% */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div className="md:col-span-4">
+              <ServiceCard service={services[2]} isLarge={false} imagePosition="left" />
+            </div>
+            <div className="md:col-span-8">
+              <ServiceCard service={services[3]} isLarge={true} imagePosition="left" />
+            </div>
+          </div>
         </motion.div>
 
         {/* CTA Section */}
@@ -258,7 +272,7 @@ const ServicesSection = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
           >
-            {/* Animated background shine */}
+            {/* Animated shine */}
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             
             <svg className="w-6 h-6 relative z-10" viewBox="0 0 24 24" fill="currentColor">
