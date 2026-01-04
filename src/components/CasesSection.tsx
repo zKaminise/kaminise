@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
+import case01 from "@/assets/case-01.png";
 
 // Cases de sucesso - imagens placeholder (substitua pelas reais)
 const cases = [
   {
     id: 1,
-    title: "E-commerce Premium",
-    category: "Loja Virtual",
-    description: "Aumento de 340% nas vendas após o lançamento",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=2400&fit=crop",
-    stats: { conversao: "+340%", vendas: "R$ 2.5M" },
+    title: "Alçar Humà",
+    category: "Site Institucional",
+    description: "Consultoria em gestão de pessoas e desenvolvimento organizacional",
+    image: case01,
+    stats: { leads: "+200%", autoridade: "Top 3" },
   },
   {
     id: 2,
