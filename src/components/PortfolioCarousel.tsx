@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
+import { MessageCircle, ArrowRight } from "lucide-react";
 
 // Placeholder images - will be replaced with actual portfolio images
 const portfolioImages = [
@@ -69,7 +70,7 @@ const PortfolioCarousel = () => {
       </div>
 
       {/* Carousel Container */}
-      <div ref={containerRef} className="relative">
+      <div ref={containerRef} className="relative mb-12">
         <motion.div
           className="flex gap-6"
           animate={{
@@ -103,6 +104,32 @@ const PortfolioCarousel = () => {
           ))}
         </motion.div>
       </div>
+
+      {/* CTA Section */}
+      <motion.div
+        className="container mx-auto px-4 md:px-6 text-center relative z-20"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3 }}
+      >
+        <p className="text-muted-foreground mb-6 text-lg">
+          Quer um projeto <span className="text-accent font-medium">exclusivo</span> como esses?
+        </p>
+        
+        <motion.a
+          href="https://wa.me/5511999999999?text=Olá! Vi o portfólio de vocês e gostaria de um projeto exclusivo para meu negócio."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground rounded-full font-semibold text-lg shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300 group"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <MessageCircle className="w-5 h-5" />
+          <span>Quero meu projeto agora</span>
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+        </motion.a>
+      </motion.div>
 
       {/* Decorative elements */}
       <div className="absolute top-10 left-10 w-20 h-20 bg-primary/5 rounded-full blur-xl" />

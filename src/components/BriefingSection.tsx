@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Video, FileText, Rocket, Eye, Link2, CheckCircle2 } from "lucide-react";
+import { Video, FileText, Rocket, Eye, Link2, CheckCircle2, MessageCircle, ArrowRight } from "lucide-react";
 
 const steps = [
   {
@@ -195,6 +195,33 @@ const BriefingSection = () => {
             transition={{ delay: 0.8, type: "spring" }}
           />
         </div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="text-center mt-16 md:mt-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <p className="text-muted-foreground mb-6 text-lg">
+            Pronto para começar seu projeto?{" "}
+            <span className="text-accent font-medium">Vamos dar o primeiro passo.</span>
+          </p>
+          
+          <motion.a
+            href="https://wa.me/5511999999999?text=Olá! Gostaria de iniciar meu projeto com vocês."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground rounded-full font-semibold text-lg shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40 transition-all duration-300 group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <MessageCircle className="w-5 h-5" />
+            <span>Falar com um especialista</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </motion.a>
+        </motion.div>
       </div>
 
       {/* Bottom decoration line */}
