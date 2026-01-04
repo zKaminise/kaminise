@@ -1,8 +1,14 @@
 import { motion } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import case01 from "@/assets/case-01.png";
+import case02 from "@/assets/case-02.png";
+import case03 from "@/assets/case-03.png";
+import case04 from "@/assets/case-04.png";
+import case05 from "@/assets/case-05.png";
+import case06 from "@/assets/case-06.png";
+import case07 from "@/assets/case-07.png";
 
-// Cases de sucesso - imagens placeholder (substitua pelas reais)
+// Cases de sucesso
 const cases = [
   {
     id: 1,
@@ -10,47 +16,55 @@ const cases = [
     category: "Site Institucional",
     description: "Consultoria em gestão de pessoas e desenvolvimento organizacional",
     image: case01,
-    stats: { leads: "+200%", autoridade: "Top 3" },
+    url: "#",
   },
   {
     id: 2,
-    title: "Escritório de Advocacia",
+    title: "Odontologia FL",
     category: "Site Institucional",
-    description: "Geração de 150+ leads qualificados por mês",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=2400&fit=crop",
-    stats: { leads: "+150/mês", autoridade: "Top 5" },
+    description: "Clínica odontológica especializada em transformar sorrisos",
+    image: case02,
+    url: "https://www.odontologiafl.com.br",
   },
   {
     id: 3,
-    title: "Clínica Odontológica",
+    title: "Kamini Script",
     category: "Landing Page",
-    description: "Redução de 60% no custo por aquisição",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=2400&fit=crop",
-    stats: { cpa: "-60%", agendamentos: "+200%" },
+    description: "Automação de agendamentos via WhatsApp para clínicas",
+    image: case03,
+    url: "https://script.kaminisegrowth.com.br",
   },
   {
     id: 4,
-    title: "Startup Tech",
-    category: "Sistema Web",
-    description: "MVP lançado em 4 semanas com alta escalabilidade",
-    image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&h=2400&fit=crop",
-    stats: { tempo: "4 semanas", usuarios: "10k+" },
+    title: "Clube das Zizas",
+    category: "Plataforma de Membros",
+    description: "Comunidade feminina de desenvolvimento pessoal",
+    image: case04,
+    url: "https://clube-zizas.vercel.app",
   },
   {
     id: 5,
-    title: "Restaurante Gourmet",
-    category: "Site + Delivery",
-    description: "Sistema integrado com pedidos online 24h",
-    image: "https://images.unsplash.com/photo-1522542550221-31fd8575f5a6?w=800&h=2400&fit=crop",
-    stats: { pedidos: "+400%", satisfacao: "4.9★" },
+    title: "Acquagyn",
+    category: "Site Institucional",
+    description: "Academia de natação e hidroginástica com 30 anos de excelência",
+    image: case05,
+    url: "https://acquagyn.com.br",
   },
   {
     id: 6,
-    title: "Imobiliária Premium",
-    category: "Portal Imobiliário",
-    description: "Plataforma completa com busca inteligente",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=2400&fit=crop",
-    stats: { imoveis: "500+", vendas: "+180%" },
+    title: "Saldanha Móveis",
+    category: "E-commerce",
+    description: "Móveis sofisticados para espaços de beleza",
+    image: case06,
+    url: "https://saldanhamoveis.com.br",
+  },
+  {
+    id: 7,
+    title: "Ecos da Alma",
+    category: "Landing Page",
+    description: "Plataforma de autodescoberta e consciência de si",
+    image: case07,
+    url: "https://ecosdaalma.com.br",
   },
 ];
 
@@ -126,7 +140,10 @@ const CaseCard = ({ caseItem, index }: CaseCardProps) => {
           
           {/* Hover overlay with CTA */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-end justify-center pb-6">
-            <motion.button
+            <motion.a
+              href={caseItem.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 bg-accent text-accent-foreground px-6 py-3 rounded-lg font-medium shadow-lg"
               initial={{ y: 20, opacity: 0 }}
               whileHover={{ scale: 1.05 }}
@@ -134,7 +151,7 @@ const CaseCard = ({ caseItem, index }: CaseCardProps) => {
             >
               <span>Ver Projeto</span>
               <ExternalLink className="w-4 h-4" />
-            </motion.button>
+            </motion.a>
           </div>
         </div>
         
@@ -151,19 +168,9 @@ const CaseCard = ({ caseItem, index }: CaseCardProps) => {
           </h3>
           
           {/* Description */}
-          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+          <p className="text-muted-foreground text-sm line-clamp-2">
             {caseItem.description}
           </p>
-          
-          {/* Stats */}
-          <div className="flex gap-4">
-            {Object.entries(caseItem.stats).map(([key, value]) => (
-              <div key={key} className="flex flex-col">
-                <span className="text-lg font-bold text-accent">{value}</span>
-                <span className="text-xs text-muted-foreground capitalize">{key}</span>
-              </div>
-            ))}
-          </div>
         </div>
         
         {/* Number indicator */}
