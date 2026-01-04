@@ -115,23 +115,23 @@ const ServiceCard = ({ service, isLarge, imagePosition }: ServiceCardProps) => {
         {/* Image Section - Only for large cards */}
         {isLarge && (
           <div className={`
-            relative md:w-[55%] flex-1 overflow-hidden
+            relative md:w-[60%] flex-1 overflow-hidden min-h-[450px]
             ${imagePosition === "left" ? "md:order-1" : ""}
           `}>
             {/* Glow effects */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-accent/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             
             {/* Image */}
-            <div className="absolute inset-0 flex items-center justify-center p-6">
+            <div className="absolute inset-0 flex items-center justify-center p-4">
               <motion.div
-                className="relative w-full h-full"
+                className="relative w-full h-full max-w-[600px]"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-full object-contain drop-shadow-2xl"
+                  className="w-full h-full object-contain drop-shadow-2xl scale-110"
                 />
                 {/* Shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
