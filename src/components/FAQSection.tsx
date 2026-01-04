@@ -191,9 +191,9 @@ const FAQSection = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          <p className="text-muted-foreground mb-6 text-lg">
-            Ainda tem dúvidas?{" "}
-            <span className="text-accent font-medium">Fale diretamente com a gente!</span>
+          <p className="text-muted-foreground mb-6 text-lg md:text-xl max-w-2xl mx-auto">
+            Se chegou até aqui acredito que esteja decidido a{" "}
+            <span className="text-accent font-medium">elevar o nível da sua presença digital</span>
           </p>
           
           <motion.a
@@ -206,8 +206,7 @@ const FAQSection = () => {
           >
             <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12" />
             <img src={whatsappIcon} alt="WhatsApp" className="w-6 h-6 relative z-10 group-hover:scale-110 transition-transform" />
-            <span className="relative z-10 text-lg">TIRAR MINHAS DÚVIDAS</span>
-            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+            <span className="relative z-10 text-lg">SOLICITAR ORÇAMENTO</span>
           </motion.a>
         </motion.div>
       </div>

@@ -5,6 +5,7 @@ import BriefingSection from "@/components/BriefingSection";
 import PortfolioCarousel from "@/components/PortfolioCarousel";
 import CasesSection from "@/components/CasesSection";
 import FAQSection from "@/components/FAQSection";
+import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
       <PortfolioCarousel />
       <CasesSection />
       <FAQSection />
+      <Footer />
       <WhatsAppButton />
     </main>
   );

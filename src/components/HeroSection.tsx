@@ -148,7 +148,7 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="cta"
-              className="group text-base md:text-lg px-8 py-6"
+              className="group text-base md:text-lg px-8 py-6 rounded-full"
               asChild
             >
               <a
