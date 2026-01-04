@@ -1,52 +1,78 @@
 import { Zap } from "lucide-react";
+import mockupSites from "@/assets/mockup-sites.png";
+import mockupLoja from "@/assets/mockup-loja.png";
+import mockupSistema from "@/assets/mockup-sistema.png";
+import mockupLanding from "@/assets/mockup-landing.png";
 
 const services = [
   {
     title: "Sites Institucionais",
     description: "Transmita autoridade e conquiste clientes com um site moderno, rápido e estratégico.",
     size: "large",
+    image: mockupSites,
   },
   {
     title: "Lojas Virtuais",
     description: "Vendas acontecendo 24h por dia com uma loja profissional, segura e feita para converter.",
     size: "small",
+    image: mockupLoja,
   },
   {
     title: "Sistemas On-line",
     description: "Soluções personalizadas para automatizar processos e escalar seu negócio.",
     size: "small",
+    image: mockupSistema,
   },
   {
     title: "Landing Pages",
     description: "Páginas focadas em alta conversão, perfeitas para vendas, captura de leads ou iniciar atendimentos. Ideal para campanhas de tráfego pago no Google, Facebook e Instagram.",
     size: "large",
+    image: mockupLanding,
   },
 ];
 
-const ServiceCard = ({ title, description, size }: { title: string; description: string; size: string }) => {
+const ServiceCard = ({ title, description, size, image }: { title: string; description: string; size: string; image: string }) => {
   const isLarge = size === "large";
   
   return (
     <div 
       className={`
-        relative bg-card rounded-xl border border-border p-6 md:p-8 
+        relative bg-card rounded-xl border border-border overflow-hidden
         transition-all duration-300 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10
         ${isLarge ? "md:col-span-2" : "md:col-span-1"}
-        flex flex-col justify-between min-h-[200px] md:min-h-[280px]
+        min-h-[320px] md:min-h-[360px]
       `}
     >
-      <div>
-        <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center mb-4">
-          <Zap className="w-5 h-5 text-accent" />
+      <div className="flex flex-col h-full">
+        {/* Text Content */}
+        <div className="p-6 md:p-8 flex-shrink-0">
+          <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center mb-4">
+            <Zap className="w-5 h-5 text-accent" />
+          </div>
+          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">{title}</h3>
+          <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-md">
+            {description}
+          </p>
         </div>
-        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">{title}</h3>
-        <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-md">
-          {description}
-        </p>
+        
+        {/* Image */}
+        <div className="flex-1 relative mt-auto overflow-hidden">
+          <img 
+            src={image} 
+            alt={title}
+            className={`
+              absolute bottom-0 right-0 object-cover object-top
+              transition-transform duration-500 hover:scale-105
+              ${isLarge ? "w-[70%] h-auto max-h-[200px]" : "w-full h-auto max-h-[180px]"}
+            `}
+          />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-card pointer-events-none" />
+        </div>
       </div>
       
       {/* Decorative gradient */}
-      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-to-tl from-accent/5 to-transparent rounded-br-xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/3 h-1/2 bg-gradient-to-tr from-accent/5 to-transparent pointer-events-none" />
     </div>
   );
 };
