@@ -30,39 +30,123 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* 3D Rotating Cube */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <motion.div className="relative w-64 h-64 md:w-96 md:h-96" style={{ perspective: "1000px" }}>
+      {/* Animated Gradient Orbs - Organic Blob Effect */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Main floating orbs with blob animation */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-72 h-72 md:w-96 md:h-96 rounded-full opacity-60"
+          style={{
+            background: "radial-gradient(circle, hsl(var(--accent)) 0%, hsl(var(--accent) / 0.3) 40%, transparent 70%)",
+            filter: "blur(40px)",
+          }}
+          animate={{
+            x: [0, 50, -30, 0],
+            y: [0, -40, 30, 0],
+            scale: [1, 1.2, 0.9, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/3 right-1/4 w-64 h-64 md:w-80 md:h-80 rounded-full opacity-50"
+          style={{
+            background: "radial-gradient(circle, hsl(190, 90%, 50%) 0%, hsl(190, 80%, 40% / 0.3) 40%, transparent 70%)",
+            filter: "blur(50px)",
+          }}
+          animate={{
+            x: [0, -40, 60, 0],
+            y: [0, 50, -20, 0],
+            scale: [1, 0.85, 1.15, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-1/3 w-56 h-56 md:w-72 md:h-72 rounded-full opacity-40"
+          style={{
+            background: "radial-gradient(circle, hsl(280, 80%, 55%) 0%, hsl(280, 70%, 45% / 0.3) 40%, transparent 70%)",
+            filter: "blur(45px)",
+          }}
+          animate={{
+            x: [0, 30, -50, 0],
+            y: [0, -30, 40, 0],
+            scale: [1, 1.1, 0.95, 1],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+
+        {/* Spinning Orbital Rings */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <motion.div
-            className="w-full h-full"
-            style={{ transformStyle: "preserve-3d" }}
-            animate={{ rotateX: 360, rotateY: 360 }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
+            className="w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full border border-accent/20"
+            style={{ perspective: "800px" }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] md:w-[600px] md:h-[600px] rounded-full border border-cyan-400/15"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[700px] md:h-[700px] rounded-full border border-purple-500/10"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
+
+        {/* Central Pulsing Glow */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 rounded-full"
+          style={{
+            background: "radial-gradient(circle, hsl(var(--accent) / 0.15) 0%, transparent 70%)",
+          }}
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+
+        {/* Floating Mini Orbs */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={`orb-${i}`}
+            className="absolute w-3 h-3 md:w-4 md:h-4 rounded-full bg-accent/60"
+            style={{
+              left: `${20 + (i * 10)}%`,
+              top: `${30 + (i % 3) * 20}%`,
+              filter: "blur(1px)",
             }}
-          >
-            {/* Cube faces */}
-            {[
-              { rotateY: 0, translateZ: 120 },
-              { rotateY: 180, translateZ: 120 },
-              { rotateY: 90, translateZ: 120 },
-              { rotateY: -90, translateZ: 120 },
-              { rotateX: 90, translateZ: 120 },
-              { rotateX: -90, translateZ: 120 },
-            ].map((face, index) => (
-              <motion.div
-                key={index}
-                className="absolute inset-0 border border-accent/20 bg-accent/5 backdrop-blur-sm"
-                style={{
-                  transform: `rotateX(${face.rotateX || 0}deg) rotateY(${face.rotateY || 0}deg) translateZ(${face.translateZ}px)`,
-                  transformStyle: "preserve-3d",
-                }}
-              />
-            ))}
-          </motion.div>
-        </motion.div>
+            animate={{
+              y: [0, -40, 0],
+              x: [0, i % 2 === 0 ? 20 : -20, 0],
+              opacity: [0.4, 1, 0.4],
+            }}
+            transition={{
+              duration: 4 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.3,
+              ease: "easeInOut",
+            }}
+          />
+        ))}
       </div>
 
       {/* Bottom glow */}
