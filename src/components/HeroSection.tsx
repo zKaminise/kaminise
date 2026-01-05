@@ -7,54 +7,40 @@ import { motion } from "framer-motion";
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-hero flex items-center justify-center">
-      {/* Animated Grid Background */}
+      {/* Animated particles background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `
-              linear-gradient(hsl(var(--accent) / 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, hsl(var(--accent) / 0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-        
-        {/* Floating particles */}
-        {[...Array(25)].map((_, i) => (
+        {[...Array(40)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-accent/40 rounded-full"
+            className="absolute w-1 h-1 bg-accent/30 rounded-full"
             style={{
-              left: `${5 + (i * 4)}%`,
-              top: `${10 + (i % 5) * 18}%`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.3, 1, 0.3],
+              opacity: [0.2, 0.8, 0.2],
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 4 + (i % 3),
+              duration: 3 + Math.random() * 2,
               repeat: Infinity,
-              delay: i * 0.15,
-              ease: "easeInOut",
+              delay: Math.random() * 2,
             }}
           />
         ))}
       </div>
 
-      {/* 3D Rotating Torus/Donut Shape */}
+      {/* 3D Rotating Cube - Enhanced */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Central Glow */}
+        {/* Outer glow */}
         <motion.div
-          className="absolute w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full"
+          className="absolute w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full"
           style={{
-            background: "radial-gradient(circle, hsl(var(--accent) / 0.2) 0%, transparent 50%)",
+            background: "radial-gradient(circle, hsl(var(--accent) / 0.15) 0%, transparent 50%)",
           }}
           animate={{
-            scale: [1, 1.15, 1],
-            opacity: [0.6, 1, 0.6],
+            scale: [1, 1.1, 1],
+            opacity: [0.5, 0.8, 0.5],
           }}
           transition={{
             duration: 4,
@@ -63,179 +49,225 @@ const HeroSection = () => {
           }}
         />
 
-        {/* 3D Container */}
-        <div 
-          className="relative w-72 h-72 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px]"
+        {/* Main 3D Cube Container */}
+        <motion.div 
+          className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96" 
           style={{ perspective: "1000px" }}
         >
-          {/* Main 3D Rotating Element - Layered Rings */}
+          {/* Primary Cube */}
           <motion.div
-            className="absolute inset-0"
+            className="w-full h-full relative"
             style={{ transformStyle: "preserve-3d" }}
-            animate={{ rotateY: 360, rotateX: 15 }}
+            animate={{ rotateX: 360, rotateY: 360 }}
             transition={{
               duration: 20,
               repeat: Infinity,
               ease: "linear",
             }}
           >
-            {/* Multiple 3D rings creating torus effect */}
-            {[...Array(12)].map((_, i) => (
+            {/* Cube faces with glassmorphism effect */}
+            {[
+              { transform: "translateZ(120px)", gradient: "from-accent/20 to-cyan-500/20" },
+              { transform: "rotateY(180deg) translateZ(120px)", gradient: "from-purple-500/20 to-accent/20" },
+              { transform: "rotateY(90deg) translateZ(120px)", gradient: "from-cyan-500/20 to-blue-500/20" },
+              { transform: "rotateY(-90deg) translateZ(120px)", gradient: "from-accent/20 to-purple-500/20" },
+              { transform: "rotateX(90deg) translateZ(120px)", gradient: "from-blue-500/20 to-accent/20" },
+              { transform: "rotateX(-90deg) translateZ(120px)", gradient: "from-cyan-500/20 to-accent/20" },
+            ].map((face, index) => (
               <motion.div
-                key={i}
-                className="absolute top-1/2 left-1/2 rounded-full border-2"
+                key={index}
+                className={`absolute inset-[15%] bg-gradient-to-br ${face.gradient} backdrop-blur-sm rounded-lg`}
                 style={{
-                  width: `${70 + i * 2}%`,
-                  height: `${70 + i * 2}%`,
-                  marginLeft: `-${35 + i}%`,
-                  marginTop: `-${35 + i}%`,
-                  transform: `rotateX(90deg) translateZ(${(i - 6) * 12}px)`,
-                  borderColor: i % 2 === 0 
-                    ? "hsl(var(--accent) / 0.6)" 
-                    : "hsl(190, 90%, 50% / 0.4)",
-                  boxShadow: `0 0 20px hsl(var(--accent) / 0.3)`,
+                  transform: face.transform,
+                  transformStyle: "preserve-3d",
+                  border: "1px solid",
+                  borderImage: "linear-gradient(135deg, hsl(var(--accent) / 0.6), hsl(190, 90%, 50% / 0.6), hsl(280, 80%, 60% / 0.4)) 1",
+                  boxShadow: "inset 0 0 30px hsl(var(--accent) / 0.1), 0 0 20px hsl(var(--accent) / 0.2)",
                 }}
                 animate={{
-                  opacity: [0.4, 0.8, 0.4],
+                  opacity: [0.6, 0.9, 0.6],
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  delay: i * 0.1,
-                  ease: "easeInOut",
+                  delay: index * 0.2,
                 }}
               />
             ))}
-          </motion.div>
 
-          {/* Second 3D Element - Vertical Rings */}
-          <motion.div
-            className="absolute inset-0"
-            style={{ transformStyle: "preserve-3d" }}
-            animate={{ rotateX: 360, rotateZ: 45 }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={`v-${i}`}
-                className="absolute top-1/2 left-1/2 rounded-full border"
-                style={{
-                  width: `${60 + i * 3}%`,
-                  height: `${60 + i * 3}%`,
-                  marginLeft: `-${30 + i * 1.5}%`,
-                  marginTop: `-${30 + i * 1.5}%`,
-                  transform: `rotateY(90deg) translateZ(${(i - 4) * 15}px)`,
-                  borderColor: "hsl(280, 70%, 55% / 0.3)",
-                }}
-              />
-            ))}
-          </motion.div>
-
-          {/* Outer rotating ring */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] h-[115%] rounded-full border-2 border-accent/30"
-            animate={{ rotate: -360 }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {/* Orbital dots on the ring */}
-            {[0, 90, 180, 270].map((angle) => (
+            {/* Cube edges - glowing lines */}
+            {/* Vertical edges */}
+            {[
+              { x: -120, z: -120 },
+              { x: 120, z: -120 },
+              { x: 120, z: 120 },
+              { x: -120, z: 120 },
+            ].map((pos, i) => (
               <div
-                key={angle}
-                className="absolute w-3 h-3 bg-accent rounded-full"
+                key={`v-edge-${i}`}
+                className="absolute top-0 left-1/2 w-0.5 h-full bg-gradient-to-b from-accent via-cyan-400 to-accent"
                 style={{
-                  top: `${50 + 48 * Math.sin((angle * Math.PI) / 180)}%`,
-                  left: `${50 + 48 * Math.cos((angle * Math.PI) / 180)}%`,
-                  transform: "translate(-50%, -50%)",
+                  transform: `translateX(${pos.x}px) translateZ(${pos.z}px)`,
+                  boxShadow: "0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent) / 0.5)",
+                }}
+              />
+            ))}
+
+            {/* Horizontal edges - top */}
+            {[
+              { x: 0, y: -120, z: -120, rotateY: 0 },
+              { x: 120, y: -120, z: 0, rotateY: 90 },
+              { x: 0, y: -120, z: 120, rotateY: 0 },
+              { x: -120, y: -120, z: 0, rotateY: 90 },
+            ].map((pos, i) => (
+              <div
+                key={`h-top-${i}`}
+                className="absolute left-0 w-full h-0.5 bg-gradient-to-r from-accent via-cyan-400 to-accent"
+                style={{
+                  transform: `translateX(${pos.x}px) translateY(${pos.y}px) translateZ(${pos.z}px) rotateY(${pos.rotateY}deg)`,
+                  boxShadow: "0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent) / 0.5)",
+                }}
+              />
+            ))}
+
+            {/* Horizontal edges - bottom */}
+            {[
+              { x: 0, y: 120, z: -120, rotateY: 0 },
+              { x: 120, y: 120, z: 0, rotateY: 90 },
+              { x: 0, y: 120, z: 120, rotateY: 0 },
+              { x: -120, y: 120, z: 0, rotateY: 90 },
+            ].map((pos, i) => (
+              <div
+                key={`h-bot-${i}`}
+                className="absolute left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400 via-accent to-cyan-400"
+                style={{
+                  transform: `translateX(${pos.x}px) translateY(${pos.y}px) translateZ(${pos.z}px) rotateY(${pos.rotateY}deg)`,
+                  boxShadow: "0 0 10px hsl(190, 90%, 50%), 0 0 20px hsl(190, 90%, 50% / 0.5)",
+                }}
+              />
+            ))}
+
+            {/* Corner vertices - glowing points */}
+            {[
+              [-120, -120, -120], [120, -120, -120], [120, 120, -120], [-120, 120, -120],
+              [-120, -120, 120], [120, -120, 120], [120, 120, 120], [-120, 120, 120],
+            ].map(([x, y, z], i) => (
+              <motion.div
+                key={`vertex-${i}`}
+                className="absolute w-3 h-3 rounded-full bg-accent"
+                style={{
+                  left: "50%",
+                  top: "50%",
+                  transform: `translate(-50%, -50%) translate3d(${x}px, ${y}px, ${z}px)`,
                   boxShadow: "0 0 15px hsl(var(--accent)), 0 0 30px hsl(var(--accent) / 0.5)",
                 }}
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.7, 1, 0.7],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  delay: i * 0.15,
+                }}
               />
             ))}
           </motion.div>
 
-          {/* Second outer ring */}
+          {/* Inner cube - smaller, different rotation */}
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] rounded-full border border-cyan-400/20"
-            animate={{ rotate: 360 }}
+            className="absolute inset-[25%]"
+            style={{ 
+              perspective: "600px",
+              transformStyle: "preserve-3d",
+            }}
+            animate={{ rotateY: -360, rotateZ: 360 }}
             transition={{
-              duration: 40,
+              duration: 15,
               repeat: Infinity,
               ease: "linear",
             }}
-          />
+          >
+            {[
+              { transform: "translateZ(40px)" },
+              { transform: "rotateY(180deg) translateZ(40px)" },
+              { transform: "rotateY(90deg) translateZ(40px)" },
+              { transform: "rotateY(-90deg) translateZ(40px)" },
+              { transform: "rotateX(90deg) translateZ(40px)" },
+              { transform: "rotateX(-90deg) translateZ(40px)" },
+            ].map((face, index) => (
+              <div
+                key={`inner-${index}`}
+                className="absolute inset-[10%] border border-purple-400/40 rounded-sm"
+                style={{
+                  transform: face.transform,
+                  transformStyle: "preserve-3d",
+                  background: "linear-gradient(135deg, hsl(280, 80%, 60% / 0.1), transparent)",
+                }}
+              />
+            ))}
+          </motion.div>
 
-          {/* Center glowing core */}
+          {/* Orbiting ring around cube */}
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-full bg-accent/20"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] rounded-full border-2 border-accent/30"
             style={{
-              boxShadow: "0 0 60px hsl(var(--accent) / 0.6), 0 0 100px hsl(var(--accent) / 0.3)",
+              transformStyle: "preserve-3d",
+              transform: "rotateX(70deg)",
             }}
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.6, 1, 0.6],
-            }}
+            animate={{ rotateZ: 360 }}
             transition={{
-              duration: 2,
+              duration: 10,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "linear",
             }}
-          />
-        </div>
+          >
+            {/* Orbital particle */}
+            <motion.div
+              className="absolute w-4 h-4 bg-accent rounded-full"
+              style={{
+                top: "0%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                boxShadow: "0 0 20px hsl(var(--accent)), 0 0 40px hsl(var(--accent) / 0.5)",
+              }}
+            />
+          </motion.div>
 
-        {/* Floating accent particles around the shape */}
-        {[...Array(6)].map((_, i) => (
+          {/* Second orbital ring */}
           <motion.div
-            key={`float-${i}`}
-            className="absolute w-2 h-2 md:w-3 md:h-3 rounded-full"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160%] h-[160%] rounded-full border border-cyan-400/20"
             style={{
-              background: i % 2 === 0 ? "hsl(var(--accent))" : "hsl(190, 90%, 55%)",
-              boxShadow: `0 0 15px ${i % 2 === 0 ? "hsl(var(--accent))" : "hsl(190, 90%, 55%)"}`,
+              transformStyle: "preserve-3d",
+              transform: "rotateX(70deg) rotateY(45deg)",
             }}
-            animate={{
-              x: [
-                Math.cos((i * Math.PI * 2) / 6) * 200,
-                Math.cos((i * Math.PI * 2) / 6 + Math.PI / 2) * 220,
-                Math.cos((i * Math.PI * 2) / 6 + Math.PI) * 200,
-                Math.cos((i * Math.PI * 2) / 6 + (3 * Math.PI) / 2) * 220,
-                Math.cos((i * Math.PI * 2) / 6) * 200,
-              ],
-              y: [
-                Math.sin((i * Math.PI * 2) / 6) * 200,
-                Math.sin((i * Math.PI * 2) / 6 + Math.PI / 2) * 220,
-                Math.sin((i * Math.PI * 2) / 6 + Math.PI) * 200,
-                Math.sin((i * Math.PI * 2) / 6 + (3 * Math.PI) / 2) * 220,
-                Math.sin((i * Math.PI * 2) / 6) * 200,
-              ],
-              scale: [1, 1.3, 1, 1.3, 1],
-            }}
+            animate={{ rotateZ: -360 }}
             transition={{
-              duration: 10 + i * 2,
+              duration: 15,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "linear",
             }}
-          />
-        ))}
+          >
+            <motion.div
+              className="absolute w-3 h-3 bg-cyan-400 rounded-full"
+              style={{
+                top: "0%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                boxShadow: "0 0 15px hsl(190, 90%, 50%), 0 0 30px hsl(190, 90%, 50% / 0.5)",
+              }}
+            />
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Bottom glow */}
       <div className="absolute inset-0 bg-gradient-glow pointer-events-none"></div>
 
-      {/* Content */}
       <div className="container relative z-10 py-12 md:py-20">
         <div className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto">
           {/* Logo */}
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <img src={logo} alt="Gabriel Misao" className="h-12 md:h-16 w-auto" />
           </motion.div>
 
