@@ -65,19 +65,10 @@ All colors MUST be HSL.
 
   html {
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
-    overflow-x: hidden;
-  }
-
-  /* GPU acceleration for smoother animations */
-  .will-change-transform {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
   }
 }
 

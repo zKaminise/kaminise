@@ -9,7 +9,7 @@ const HeroSection = () => {
     <section className="relative min-h-screen overflow-hidden bg-gradient-hero flex items-center justify-center">
       {/* Animated particles background */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(40)].map((_, i) => (
+        {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-accent/30 rounded-full"
@@ -30,33 +30,11 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* 3D Rotating Cube - Enhanced */}
+      {/* 3D Rotating Cube */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Outer glow */}
-        <motion.div
-          className="absolute w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, hsl(var(--accent) / 0.15) 0%, transparent 50%)",
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.5, 0.8, 0.5],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        {/* Main 3D Cube Container */}
-        <motion.div 
-          className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96" 
-          style={{ perspective: "1000px" }}
-        >
-          {/* Primary Cube */}
+        <motion.div className="relative w-64 h-64 md:w-96 md:h-96" style={{ perspective: "1000px" }}>
           <motion.div
-            className="w-full h-full relative"
+            className="w-full h-full"
             style={{ transformStyle: "preserve-3d" }}
             animate={{ rotateX: 360, rotateY: 360 }}
             transition={{
@@ -65,198 +43,24 @@ const HeroSection = () => {
               ease: "linear",
             }}
           >
-            {/* Cube faces with glassmorphism effect */}
+            {/* Cube faces */}
             {[
-              { transform: "translateZ(120px)", gradient: "from-accent/20 to-cyan-500/20" },
-              { transform: "rotateY(180deg) translateZ(120px)", gradient: "from-purple-500/20 to-accent/20" },
-              { transform: "rotateY(90deg) translateZ(120px)", gradient: "from-cyan-500/20 to-blue-500/20" },
-              { transform: "rotateY(-90deg) translateZ(120px)", gradient: "from-accent/20 to-purple-500/20" },
-              { transform: "rotateX(90deg) translateZ(120px)", gradient: "from-blue-500/20 to-accent/20" },
-              { transform: "rotateX(-90deg) translateZ(120px)", gradient: "from-cyan-500/20 to-accent/20" },
+              { rotateY: 0, translateZ: 120 },
+              { rotateY: 180, translateZ: 120 },
+              { rotateY: 90, translateZ: 120 },
+              { rotateY: -90, translateZ: 120 },
+              { rotateX: 90, translateZ: 120 },
+              { rotateX: -90, translateZ: 120 },
             ].map((face, index) => (
               <motion.div
                 key={index}
-                className={`absolute inset-[15%] bg-gradient-to-br ${face.gradient} backdrop-blur-sm rounded-lg`}
+                className="absolute inset-0 border border-accent/20 bg-accent/5 backdrop-blur-sm"
                 style={{
-                  transform: face.transform,
+                  transform: `rotateX(${face.rotateX || 0}deg) rotateY(${face.rotateY || 0}deg) translateZ(${face.translateZ}px)`,
                   transformStyle: "preserve-3d",
-                  border: "1px solid",
-                  borderImage: "linear-gradient(135deg, hsl(var(--accent) / 0.6), hsl(190, 90%, 50% / 0.6), hsl(280, 80%, 60% / 0.4)) 1",
-                  boxShadow: "inset 0 0 30px hsl(var(--accent) / 0.1), 0 0 20px hsl(var(--accent) / 0.2)",
-                }}
-                animate={{
-                  opacity: [0.6, 0.9, 0.6],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: index * 0.2,
                 }}
               />
             ))}
-
-            {/* Cube edges - glowing lines */}
-            {/* Vertical edges */}
-            {[
-              { x: -120, z: -120 },
-              { x: 120, z: -120 },
-              { x: 120, z: 120 },
-              { x: -120, z: 120 },
-            ].map((pos, i) => (
-              <div
-                key={`v-edge-${i}`}
-                className="absolute top-0 left-1/2 w-0.5 h-full bg-gradient-to-b from-accent via-cyan-400 to-accent"
-                style={{
-                  transform: `translateX(${pos.x}px) translateZ(${pos.z}px)`,
-                  boxShadow: "0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent) / 0.5)",
-                }}
-              />
-            ))}
-
-            {/* Horizontal edges - top */}
-            {[
-              { x: 0, y: -120, z: -120, rotateY: 0 },
-              { x: 120, y: -120, z: 0, rotateY: 90 },
-              { x: 0, y: -120, z: 120, rotateY: 0 },
-              { x: -120, y: -120, z: 0, rotateY: 90 },
-            ].map((pos, i) => (
-              <div
-                key={`h-top-${i}`}
-                className="absolute left-0 w-full h-0.5 bg-gradient-to-r from-accent via-cyan-400 to-accent"
-                style={{
-                  transform: `translateX(${pos.x}px) translateY(${pos.y}px) translateZ(${pos.z}px) rotateY(${pos.rotateY}deg)`,
-                  boxShadow: "0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent) / 0.5)",
-                }}
-              />
-            ))}
-
-            {/* Horizontal edges - bottom */}
-            {[
-              { x: 0, y: 120, z: -120, rotateY: 0 },
-              { x: 120, y: 120, z: 0, rotateY: 90 },
-              { x: 0, y: 120, z: 120, rotateY: 0 },
-              { x: -120, y: 120, z: 0, rotateY: 90 },
-            ].map((pos, i) => (
-              <div
-                key={`h-bot-${i}`}
-                className="absolute left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400 via-accent to-cyan-400"
-                style={{
-                  transform: `translateX(${pos.x}px) translateY(${pos.y}px) translateZ(${pos.z}px) rotateY(${pos.rotateY}deg)`,
-                  boxShadow: "0 0 10px hsl(190, 90%, 50%), 0 0 20px hsl(190, 90%, 50% / 0.5)",
-                }}
-              />
-            ))}
-
-            {/* Corner vertices - glowing points */}
-            {[
-              [-120, -120, -120], [120, -120, -120], [120, 120, -120], [-120, 120, -120],
-              [-120, -120, 120], [120, -120, 120], [120, 120, 120], [-120, 120, 120],
-            ].map(([x, y, z], i) => (
-              <motion.div
-                key={`vertex-${i}`}
-                className="absolute w-3 h-3 rounded-full bg-accent"
-                style={{
-                  left: "50%",
-                  top: "50%",
-                  transform: `translate(-50%, -50%) translate3d(${x}px, ${y}px, ${z}px)`,
-                  boxShadow: "0 0 15px hsl(var(--accent)), 0 0 30px hsl(var(--accent) / 0.5)",
-                }}
-                animate={{
-                  scale: [1, 1.4, 1],
-                  opacity: [0.7, 1, 0.7],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.15,
-                }}
-              />
-            ))}
-          </motion.div>
-
-          {/* Inner cube - smaller, different rotation */}
-          <motion.div
-            className="absolute inset-[25%]"
-            style={{ 
-              perspective: "600px",
-              transformStyle: "preserve-3d",
-            }}
-            animate={{ rotateY: -360, rotateZ: 360 }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {[
-              { transform: "translateZ(40px)" },
-              { transform: "rotateY(180deg) translateZ(40px)" },
-              { transform: "rotateY(90deg) translateZ(40px)" },
-              { transform: "rotateY(-90deg) translateZ(40px)" },
-              { transform: "rotateX(90deg) translateZ(40px)" },
-              { transform: "rotateX(-90deg) translateZ(40px)" },
-            ].map((face, index) => (
-              <div
-                key={`inner-${index}`}
-                className="absolute inset-[10%] border border-purple-400/40 rounded-sm"
-                style={{
-                  transform: face.transform,
-                  transformStyle: "preserve-3d",
-                  background: "linear-gradient(135deg, hsl(280, 80%, 60% / 0.1), transparent)",
-                }}
-              />
-            ))}
-          </motion.div>
-
-          {/* Orbiting ring around cube */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] rounded-full border-2 border-accent/30"
-            style={{
-              transformStyle: "preserve-3d",
-              transform: "rotateX(70deg)",
-            }}
-            animate={{ rotateZ: 360 }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {/* Orbital particle */}
-            <motion.div
-              className="absolute w-4 h-4 bg-accent rounded-full"
-              style={{
-                top: "0%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                boxShadow: "0 0 20px hsl(var(--accent)), 0 0 40px hsl(var(--accent) / 0.5)",
-              }}
-            />
-          </motion.div>
-
-          {/* Second orbital ring */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160%] h-[160%] rounded-full border border-cyan-400/20"
-            style={{
-              transformStyle: "preserve-3d",
-              transform: "rotateX(70deg) rotateY(45deg)",
-            }}
-            animate={{ rotateZ: -360 }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            <motion.div
-              className="absolute w-3 h-3 bg-cyan-400 rounded-full"
-              style={{
-                top: "0%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                boxShadow: "0 0 15px hsl(190, 90%, 50%), 0 0 30px hsl(190, 90%, 50% / 0.5)",
-              }}
-            />
           </motion.div>
         </motion.div>
       </div>
