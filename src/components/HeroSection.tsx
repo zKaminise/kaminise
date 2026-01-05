@@ -3,24 +3,18 @@ import logo from "@/assets/logo.png";
 import whatsappIcon from "@/assets/whatsapp-icon.png";
 import { Sparkles, Palette, Layout, Star } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 
-// Icosahedron vertices (20-faced polyhedron)
-const phi = (1 + Math.sqrt(5)) / 2;
-const icosahedronVertices = [
-  [-1, phi, 0], [1, phi, 0], [-1, -phi, 0], [1, -phi, 0],
-  [0, -1, phi], [0, 1, phi], [0, -1, -phi], [0, 1, -phi],
-  [phi, 0, -1], [phi, 0, 1], [-phi, 0, -1], [-phi, 0, 1],
+// Simplified cube vertices for better performance
+const cubeVertices = [
+  [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+  [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1],
 ];
 
-// Icosahedron edges
-const icosahedronEdges = [
-  [0, 11], [0, 5], [0, 1], [0, 7], [0, 10],
-  [1, 5], [5, 11], [11, 10], [10, 7], [7, 1],
-  [3, 9], [3, 4], [3, 2], [3, 6], [3, 8],
-  [4, 9], [2, 4], [6, 2], [8, 6], [9, 8],
-  [1, 9], [5, 4], [11, 2], [10, 6], [7, 8],
-  [4, 5], [2, 11], [6, 10], [8, 7], [9, 1],
+const cubeEdges = [
+  [0, 1], [1, 2], [2, 3], [3, 0], // back face
+  [4, 5], [5, 6], [6, 7], [7, 4], // front face
+  [0, 4], [1, 5], [2, 6], [3, 7], // connections
 ];
 
 const HeroSection = () => {
@@ -30,231 +24,181 @@ const HeroSection = () => {
     offset: ["start start", "end start"],
   });
 
-  // Parallax transforms
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const geometryY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const geometryScale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-  const geometryOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  // Parallax transforms - more noticeable values
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const geometryY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const geometryScale = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
+  // Pre-calculate particle positions for better performance
+  const particles = useMemo(() => 
+    [...Array(12)].map((_, i) => ({
+      left: `${10 + (i * 7.5)}%`,
+      top: `${15 + (i % 4) * 20}%`,
+      delay: i * 0.2,
+    })), []
+  );
 
   return (
     <section 
       ref={sectionRef}
       className="relative min-h-screen overflow-hidden bg-gradient-hero flex items-center justify-center"
     >
-      {/* Grid Background with Parallax */}
+      {/* Grid Background with Parallax - GPU accelerated */}
       <motion.div 
-        className="absolute inset-0 overflow-hidden"
-        style={{ y: backgroundY }}
+        className="absolute inset-0 overflow-hidden will-change-transform"
+        style={{ 
+          y: backgroundY,
+          transform: "translateZ(0)",
+        }}
       >
-        {/* Perspective Grid Floor */}
+        {/* Perspective Grid */}
         <div 
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-15"
           style={{
             backgroundImage: `
-              linear-gradient(hsl(var(--accent) / 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, hsl(var(--accent) / 0.3) 1px, transparent 1px)
+              linear-gradient(hsl(var(--accent) / 0.4) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(var(--accent) / 0.4) 1px, transparent 1px)
             `,
-            backgroundSize: "60px 60px",
-            transform: "perspective(500px) rotateX(60deg)",
+            backgroundSize: "80px 80px",
+            transform: "perspective(500px) rotateX(60deg) translateZ(0)",
             transformOrigin: "center top",
+            willChange: "transform",
           }}
         />
 
-        {/* Floating particles */}
-        {[...Array(30)].map((_, i) => (
+        {/* Static particles - no continuous animation for performance */}
+        {particles.map((particle, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-accent/40 rounded-full"
+            className="absolute w-1.5 h-1.5 bg-accent/50 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: particle.left,
+              top: particle.top,
+              transform: "translateZ(0)",
             }}
-            animate={{
-              opacity: [0.2, 0.8, 0.2],
-              scale: [1, 2, 1],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 3,
-              repeat: Infinity,
-              delay: Math.random() * 3,
-            }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 0.6, scale: 1 }}
+            transition={{ duration: 1, delay: particle.delay }}
           />
         ))}
       </motion.div>
 
-      {/* 3D Holographic Icosahedron with Parallax */}
+      {/* 3D Cube with Parallax - Optimized */}
       <motion.div 
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none will-change-transform"
         style={{ 
           y: geometryY, 
           scale: geometryScale,
-          opacity: geometryOpacity,
+          transform: "translateZ(0)",
         }}
       >
-        {/* Outer glow ring */}
-        <motion.div
-          className="absolute w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full"
+        {/* Glow effect - static, no animation */}
+        <div
+          className="absolute w-[350px] h-[350px] md:w-[500px] md:h-[500px] rounded-full opacity-60"
           style={{
-            background: "radial-gradient(circle, hsl(var(--accent) / 0.1) 0%, transparent 60%)",
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.5, 0.8, 0.5],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
+            background: "radial-gradient(circle, hsl(var(--accent) / 0.15) 0%, transparent 60%)",
           }}
         />
 
-        {/* Main 3D Icosahedron */}
-        <motion.div 
-          className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96"
-          style={{ perspective: "1200px" }}
+        {/* Main 3D Cube - Single rotation animation */}
+        <div 
+          className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80"
+          style={{ perspective: "800px" }}
         >
-          {/* Primary Icosahedron */}
           <motion.div
-            className="absolute inset-0"
-            style={{ transformStyle: "preserve-3d" }}
+            className="absolute inset-0 will-change-transform"
+            style={{ 
+              transformStyle: "preserve-3d",
+              transform: "translateZ(0)",
+            }}
             animate={{ 
-              rotateX: [0, 360],
-              rotateY: [0, 360],
-              rotateZ: [0, 180],
+              rotateX: 360,
+              rotateY: 360,
             }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {/* Render edges as lines */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="-2 -2 4 4">
-              <defs>
-                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.8" />
-                  <stop offset="50%" stopColor="hsl(190, 90%, 50%)" stopOpacity="1" />
-                  <stop offset="100%" stopColor="hsl(280, 80%, 60%)" stopOpacity="0.8" />
-                </linearGradient>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="0.02" result="coloredBlur"/>
-                  <feMerge>
-                    <feMergeNode in="coloredBlur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-              </defs>
-              {icosahedronEdges.map(([start, end], i) => {
-                const [x1, y1] = icosahedronVertices[start];
-                const [x2, y2] = icosahedronVertices[end];
-                return (
-                  <motion.line
-                    key={i}
-                    x1={x1 / phi}
-                    y1={y1 / phi}
-                    x2={x2 / phi}
-                    y2={y2 / phi}
-                    stroke="url(#lineGradient)"
-                    strokeWidth="0.015"
-                    filter="url(#glow)"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: [0.4, 1, 0.4] }}
-                    transition={{
-                      pathLength: { duration: 2, delay: i * 0.05 },
-                      opacity: { duration: 3, repeat: Infinity, delay: i * 0.1 },
-                    }}
-                  />
-                );
-              })}
-              {/* Vertices as glowing points */}
-              {icosahedronVertices.map(([x, y], i) => (
-                <motion.circle
-                  key={`vertex-${i}`}
-                  cx={x / phi}
-                  cy={y / phi}
-                  r="0.04"
-                  fill="hsl(var(--accent))"
-                  filter="url(#glow)"
-                  animate={{
-                    r: [0.03, 0.05, 0.03],
-                    opacity: [0.6, 1, 0.6],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.1,
-                  }}
-                />
-              ))}
-            </svg>
-          </motion.div>
-
-          {/* Secondary rotating ring */}
-          <motion.div
-            className="absolute inset-0"
-            style={{ transformStyle: "preserve-3d" }}
-            animate={{ rotateY: -360, rotateX: 180 }}
             transition={{
               duration: 25,
               repeat: Infinity,
               ease: "linear",
             }}
           >
-            <div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] rounded-full border border-cyan-400/30"
-              style={{ transform: "rotateX(75deg)" }}
-            />
+            {/* Cube edges - static SVG, only container rotates */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="-2 -2 4 4">
+              <defs>
+                <linearGradient id="cubeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="hsl(var(--accent))" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="hsl(190, 90%, 55%)" stopOpacity="0.9" />
+                </linearGradient>
+              </defs>
+              {cubeEdges.map(([start, end], i) => {
+                const [x1, y1] = cubeVertices[start];
+                const [x2, y2] = cubeVertices[end];
+                return (
+                  <line
+                    key={i}
+                    x1={x1}
+                    y1={y1}
+                    x2={x2}
+                    y2={y2}
+                    stroke="url(#cubeGradient)"
+                    strokeWidth="0.04"
+                    strokeLinecap="round"
+                  />
+                );
+              })}
+              {/* Vertices */}
+              {cubeVertices.map(([x, y], i) => (
+                <circle
+                  key={`v-${i}`}
+                  cx={x}
+                  cy={y}
+                  r="0.08"
+                  fill="hsl(var(--accent))"
+                />
+              ))}
+            </svg>
           </motion.div>
 
-          {/* Third rotating ring */}
+          {/* Outer ring - single rotation */}
           <motion.div
-            className="absolute inset-0"
-            style={{ transformStyle: "preserve-3d" }}
-            animate={{ rotateZ: 360, rotateY: -180 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] rounded-full border-2 border-accent/25 will-change-transform"
+            style={{ transform: "translateZ(0)" }}
+            animate={{ rotate: -360 }}
             transition={{
-              duration: 35,
+              duration: 30,
               repeat: Infinity,
               ease: "linear",
             }}
-          >
-            <div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] rounded-full border border-purple-400/20"
-              style={{ transform: "rotateX(60deg) rotateY(45deg)" }}
-            />
-          </motion.div>
-        </motion.div>
+          />
 
-        {/* Orbiting particles around the shape */}
-        {[...Array(6)].map((_, i) => (
+          {/* Second ring */}
           <motion.div
-            key={`orbit-${i}`}
-            className="absolute w-2 h-2 md:w-3 md:h-3 rounded-full bg-accent"
-            style={{
-              boxShadow: "0 0 10px hsl(var(--accent)), 0 0 20px hsl(var(--accent) / 0.5)",
-            }}
-            animate={{
-              x: [
-                Math.cos((i * Math.PI * 2) / 6) * 180,
-                Math.cos((i * Math.PI * 2) / 6 + Math.PI) * 180,
-                Math.cos((i * Math.PI * 2) / 6) * 180,
-              ],
-              y: [
-                Math.sin((i * Math.PI * 2) / 6) * 180,
-                Math.sin((i * Math.PI * 2) / 6 + Math.PI) * 180,
-                Math.sin((i * Math.PI * 2) / 6) * 180,
-              ],
-              scale: [1, 1.5, 1],
-            }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] rounded-full border border-cyan-400/15 will-change-transform"
+            style={{ transform: "translateZ(0)" }}
+            animate={{ rotate: 360 }}
             transition={{
-              duration: 8 + i,
+              duration: 40,
               repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.5,
+              ease: "linear",
             }}
           />
-        ))}
+        </div>
+
+        {/* Corner accents - static */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[550px] md:h-[550px]">
+          {[0, 90, 180, 270].map((angle) => (
+            <div
+              key={angle}
+              className="absolute w-3 h-3 bg-accent/70 rounded-full"
+              style={{
+                top: `${50 + 45 * Math.sin((angle * Math.PI) / 180)}%`,
+                left: `${50 + 45 * Math.cos((angle * Math.PI) / 180)}%`,
+                transform: "translate(-50%, -50%)",
+                boxShadow: "0 0 15px hsl(var(--accent) / 0.5)",
+              }}
+            />
+          ))}
+        </div>
       </motion.div>
 
       {/* Bottom glow */}
@@ -262,12 +206,19 @@ const HeroSection = () => {
 
       {/* Content with Parallax */}
       <motion.div 
-        className="container relative z-10 py-12 md:py-20"
-        style={{ y: contentY }}
+        className="container relative z-10 py-12 md:py-20 will-change-transform"
+        style={{ 
+          y: contentY,
+          transform: "translateZ(0)",
+        }}
       >
         <div className="flex flex-col items-center text-center gap-8 max-w-4xl mx-auto">
           {/* Logo */}
-          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.5 }}
+          >
             <img src={logo} alt="Gabriel Misao" className="h-12 md:h-16 w-auto" />
           </motion.div>
 
@@ -275,7 +226,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-accent/30 bg-accent/10 backdrop-blur-sm"
           >
             <span className="text-accent font-semibold text-sm tracking-wider uppercase">Agência Premium</span>
@@ -285,7 +236,7 @@ const HeroSection = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
             className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-foreground"
           >
             Pare de perder vendas <span className="text-accent">por não ter</span>{" "}
@@ -296,7 +247,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
             Criamos sites e identidades visuais que elevam sua marca ao próximo nível. Sites feitos sob medida por
@@ -307,7 +258,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
             className="flex flex-wrap justify-center gap-4 md:gap-8"
           >
             {[
@@ -326,7 +277,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col items-center gap-4"
           >
             <Button
