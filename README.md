@@ -1,73 +1,60 @@
-# Welcome to your Lovable project
+# Gabriel Misao — Creative Developer
 
-## Project info
+Portfólio pessoal em React, Vite e TypeScript. Design editorial em preto, off-white e verde ácido, com projetos reais e contato pelo WhatsApp.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Executar
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Requer Node.js 22.12 ou superior.
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Prévia local: http://127.0.0.1:8080
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run build
+npm run preview
+npm run lint
+npm run typecheck
+npm run format
+```
 
-**Use GitHub Codespaces**
+O build verifica TypeScript estrito e gera `dist/`. Publique o conteúdo de `dist/` na hospedagem do domínio. Configure fallback de rotas para `index.html`, mantendo os arquivos estáticos acessíveis. Nenhum push ou deploy é executado por esses comandos.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Organização
 
-## What technologies are used for this project?
+- `src/components/layout`: navegação, menu nativo acessível, links e rodapé.
+- `src/components/sections`: hero, manifesto, projetos, serviços, processo, sobre e FAQ.
+- `src/components/motion`: Lenis, cursor e controle de movimento.
+- `src/data/projects.ts`: todos os projetos, imagens e URLs.
+- `src/data/site.ts`: contatos, serviços, processo e respostas do FAQ.
+- `src/hooks/useMotionPreference.ts`: preferência do sistema e redução manual de movimento.
+- `src/index.css`: tokens, composições, breakpoints e estilos de acessibilidade.
+- `src/assets`: todos os arquivos originais, preservados.
+- `public/images`: versões WebP responsivas.
 
-This project is built with:
+## Imagens e SEO
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```sh
+npm run assets:optimize
+npm run assets:social
+node scripts/check-links.mjs
+```
 
-## How can I deploy this project?
+O primeiro comando gera WebP sem ampliar as imagens originais. O segundo atualiza a imagem social. As fontes são servidas localmente, sem requisições ao Google Fonts.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Metadata, canonical, Open Graph, Twitter Card e JSON-LD estão em `index.html`. Sitemap e robots estão em `public/`. Para mudar de domínio, atualize esses três arquivos.
 
-## Can I connect a custom domain to my Lovable project?
+## Movimento e acessibilidade
 
-Yes, you can!
+O hero tem três fases ligadas ao scroll: separação da tipografia, abertura das janelas e composição expandida. Os cases se sobrepõem enquanto o anterior recua em escala; a galeria do arquivo se desloca horizontalmente com a rolagem vertical. Essas duas cenas usam sticky nativo somente a partir de 1000 px de largura e 650 px de altura. Em telas menores, os projetos seguem em fluxo vertical com movimentos curtos.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Manifesto, linhas de serviços e monograma têm animações próprias, com máscaras, deslocamento lateral e parallax. O processo tem índice sticky e conteúdo legível no fluxo. Framer Motion anima os links do menu. Lenis e cursor só entram em desktop com ponteiro preciso. O cursor do sistema permanece disponível.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+`prefers-reduced-motion` desativa as grandes animações, smooth scroll e sticky do hero. O botão no rodapé permite reduzir o movimento também por escolha do visitante. A preferência de redução do sistema sempre prevalece.
+
+O menu usa `dialog.showModal()` para contenção de foco, Escape e restauração de foco. Projetos, serviços e FAQ usam `details/summary`, com operação nativa por teclado e toque.
+
+Veja [a análise da reconstrução](docs/reconstruction.md) e [o registro de validação](docs/validation.md).

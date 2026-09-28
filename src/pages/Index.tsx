@@ -1,27 +1,28 @@
-import HeroSection from "@/components/HeroSection";
-import MarqueeSection from "@/components/MarqueeSection";
-import ServicesSection from "@/components/ServicesSection";
-import BriefingSection from "@/components/BriefingSection";
-import PortfolioCarousel from "@/components/PortfolioCarousel";
-import CasesSection from "@/components/CasesSection";
-import FAQSection from "@/components/FAQSection";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-
-const Index = () => {
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import MotionSystem from "@/components/motion/MotionSystem";
+import Hero from "@/components/sections/Hero";
+import Manifesto from "@/components/sections/Manifesto";
+import SelectedProjects from "@/components/sections/SelectedProjects";
+import Services from "@/components/sections/Services";
+import Process from "@/components/sections/Process";
+import About from "@/components/sections/About";
+import FAQ from "@/components/sections/FAQ";
+export default function Index() {
   return (
-    <main className="bg-background">
-      <HeroSection />
-      <MarqueeSection />
-      <ServicesSection />
-      <BriefingSection />
-      <PortfolioCarousel />
-      <CasesSection />
-      <FAQSection />
+    <>
+      <Header />
+      <main id="conteudo" tabIndex={-1}>
+        <Hero />
+        <Manifesto />
+        <SelectedProjects />
+        <Services />
+        <Process />
+        <About />
+        <FAQ />
+      </main>
       <Footer />
-      <WhatsAppButton />
-    </main>
+      <MotionSystem />
+    </>
   );
-};
-
-export default Index;
+}
