@@ -57,3 +57,13 @@ O conteúdo publicável está em `dist/`. Nenhuma configuração de domínio ou 
 - Conferidos visualmente: hero expandido, primeiro e segundo cases, sobreposição dos painéis, movimento horizontal e manifesto a 360 px. Sem imagens quebradas ou erros/avisos no console da sessão.
 - Abertura de serviço com Enter confirmada. Redução manual desativa Lenis, sticky e transforms das novas cenas; reativação restaura o comportamento.
 - Build com TypeScript estrito e lint aprovados após os ajustes. Os testes continuam locais, em Chromium, sem promessa de resultado em Lighthouse ou teste em hardware físico.
+
+## Aplicação da identidade visual e retrato — 28/09/2026
+
+- Logos fornecidas aplicadas ao cabeçalho, menu mobile, assinatura da seção Sobre, rodapé e página 404. Ícones da aba/Apple e imagem de compartilhamento também atualizados.
+- Os cinco PNGs originais foram preservados em `src/assets/brand/`. Versões WebP e retrato responsivo em 480, 800 e 1122 px são gerados por `npm run assets:brand`.
+- Foto real na seção Sobre com enquadramento 4:5 e parallax discreto, desativado pela preferência de movimento reduzido.
+- Inspeção visual no desktop de 1281×884 e no mobile de 390×844 e 360×800; verificação adicional de layout a 768×1024. Sem overflow horizontal. Cabeçalho, menu, assinatura, foto e rodapé conferidos; imagens visíveis carregadas corretamente.
+- Controle manual de movimento reduzido e reativação verificados; transforms da foto e da marca no rodapé removidos no modo reduzido.
+- Ajustados a prioridade CSS da identidade do rodapé e o modo de mesclagem para integrar o fundo das logos às seções escuras, inclusive durante a animação.
+- `npm run build`, `npm run lint` e `git diff --check` aprovados. Console da prévia sem erros ou avisos durante esta revisão.

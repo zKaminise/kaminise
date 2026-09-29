@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import BrandLogo from "@/components/layout/BrandLogo";
 export default function NotFound() {
   useEffect(() => {
     const previous = document.title;
@@ -9,7 +10,8 @@ export default function NotFound() {
   }, []);
   return (
     <main className="not-found">
-      <p className="eyebrow">GABRIEL MISAO / 404</p>
+      <BrandLogo loading="eager" />
+      <p className="eyebrow">PÁGINA NÃO ENCONTRADA / 404</p>
       <h1>
         Fora do
         <br />

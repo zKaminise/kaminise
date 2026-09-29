@@ -3,6 +3,7 @@ import { ContactLink } from "../layout/ProjectLink";
 import { useLayoutEffect, useRef } from "react";
 import { useMotionPreference } from "@/hooks/useMotionPreference";
 import { gsap } from "@/lib/motion";
+import "./about-portrait.css";
 export default function About() {
   const root = useRef<HTMLElement>(null);
   const reduced = useMotionPreference();
@@ -16,50 +17,20 @@ export default function About() {
         const desktop = context.conditions?.desktop;
         const graphic = root.current?.querySelector(".about-composition");
         if (!graphic) return;
-        const composition = gsap.timeline({
-          scrollTrigger: {
-            trigger: graphic,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: desktop ? 0.8 : 0.3,
-          },
-        });
-        composition.fromTo(
-          ".monogram",
+        gsap.fromTo(
+          ".about-portrait",
+          { yPercent: desktop ? 1.2 : 0.6, scale: desktop ? 1.045 : 1.025 },
           {
-            rotation: desktop ? -14 : -10,
-            y: desktop ? 42 : 15,
-            scale: 0.91,
-          },
-          {
-            rotation: desktop ? -2 : -5,
-            y: desktop ? -28 : -10,
-            scale: 1.02,
+            yPercent: desktop ? -1.2 : -0.6,
+            scale: desktop ? 1.045 : 1.025,
             ease: "none",
-            duration: 1,
+            scrollTrigger: {
+              trigger: graphic,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: desktop ? 0.8 : 0.3,
+            },
           },
-        );
-        composition.fromTo(
-          ".monogram > span",
-          {
-            y: desktop ? 30 : 12,
-          },
-          {
-            y: desktop ? -15 : -5,
-            ease: "none",
-            duration: 1,
-          },
-          0,
-        );
-        composition.fromTo(
-          ".monogram > i",
-          { rotation: -35 },
-          {
-            rotation: 25,
-            ease: "none",
-            duration: 1,
-          },
-          0,
         );
 
         gsap.from(".client-name", {
@@ -88,24 +59,40 @@ export default function About() {
       className="about section-pad"
       aria-labelledby="about-title"
     >
-      <div className="about-composition">
-        <div className="monogram" aria-hidden="true">
-          g<span>m</span>
-          <i>↗</i>
+      <figure className="about-composition">
+        <div className="about-portrait-frame">
+          <img
+            className="about-portrait"
+            src="/brand/gabriel-misao-portrait-800.webp"
+            srcSet="/brand/gabriel-misao-portrait-480.webp 480w, /brand/gabriel-misao-portrait-800.webp 800w, /brand/gabriel-misao-portrait-1122.webp 1122w"
+            sizes="(max-width: 800px) min(440px, 90vw), (max-width: 1400px) 40vw, 560px"
+            width={1122}
+            height={1402}
+            alt="Gabriel Misao sorrindo, usando terno azul-marinho e camisa branca."
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div className="eyebrow">
+        <figcaption className="eyebrow">
           <span>DESIGNER POR OLHAR.</span>
           <span>DEVELOPER POR OFÍCIO.</span>
-        </div>
-      </div>
+        </figcaption>
+      </figure>
       <div className="about-copy">
         <p className="eyebrow section-kicker">
           04 / A PESSOA POR TRÁS DOS PIXELS
         </p>
         <h2 id="about-title">
           Muito prazer.
-          <br />
-          Gabriel <span className="serif">Misao.</span>
+          <img
+            className="about-signature"
+            src="/brand/logo-principal.webp"
+            width={1255}
+            height={420}
+            alt="Gabriel Misao"
+            loading="lazy"
+            decoding="async"
+          />
         </h2>
         <p className="about-lead">
           Entre design, código e movimento,

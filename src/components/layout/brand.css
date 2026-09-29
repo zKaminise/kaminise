@@ -1,0 +1,46 @@
+.brand-logo {
+  display: block;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: lighten;
+}
+.site-header .wordmark,
+.menu-top .wordmark {
+  display: block;
+  width: 210px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.wordmark .brand-logo {
+  width: 100%;
+}
+.footer .footer-details .footer-identity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+.footer-identity .brand-logo {
+  width: 60px;
+}
+.footer .footer-brand {
+  width: 100%;
+  max-width: 1255px;
+  margin: clamp(38px, 5vw, 80px) auto 28px;
+  mix-blend-mode: lighten;
+}
+.footer-brand .brand-logo {
+  width: 100%;
+}
+.not-found .brand-logo {
+  width: 230px;
+}
+@media (max-width: 800px) {
+  .site-header .wordmark,
+  .menu-top .wordmark {
+    width: 174px;
+  }
+  .footer-identity .brand-logo {
+    width: 48px;
+  }
+}

@@ -1,0 +1,63 @@
+.about .about-composition {
+  width: 100%;
+  max-width: 560px;
+  margin: 0;
+  padding: 0;
+  aspect-ratio: auto;
+  display: block;
+  background: none;
+  border: 0;
+  overflow: visible;
+}
+
+.about .about-portrait-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #262b2c;
+}
+
+.about .about-portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+.about .about-composition > .eyebrow {
+  padding-top: 18px;
+  gap: 12px;
+  line-height: 1.6;
+}
+
+.about .about-signature {
+  display: block;
+  width: min(100%, 460px);
+  height: auto;
+  margin-top: 24px;
+  mix-blend-mode: lighten;
+}
+
+@media (max-width: 800px) {
+  .about .about-composition {
+    max-width: 440px;
+  }
+
+  .about .about-signature {
+    width: min(100%, 400px);
+    margin-top: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about .about-portrait {
+    transform: none !important;
+  }
+}
+
+html[data-reduced-motion="true"] .about .about-portrait {
+  transform: none !important;
+}

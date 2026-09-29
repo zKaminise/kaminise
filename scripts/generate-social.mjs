@@ -1,3 +1,10 @@
 import sharp from "sharp";
-const svg = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="630" fill="#0b0b0a"/><path d="M55 100H1145M55 550H1145" stroke="#45463b"/><g fill="#f0eee7" font-family="Arial, sans-serif"><text x="55" y="66" font-size="26">gabriel misao✳</text><text x="1145" y="64" text-anchor="end" font-size="13" letter-spacing="2">CREATIVE DEVELOPER / BRASIL</text><text x="48" y="237" font-size="105" font-weight="bold" letter-spacing="-6">IDEIAS QUE</text><text x="130" y="353" font-size="105" font-weight="bold" letter-spacing="-6">GANHAM</text><text x="48" y="469" font-size="105" font-weight="bold" letter-spacing="-6">PRESENÇA<tspan fill="#d3f36b">.</tspan></text><text x="55" y="590" font-size="15" letter-spacing="2">DESIGN COM INTENÇÃO. CÓDIGO COM PRECISÃO.</text><text x="1145" y="590" text-anchor="end" font-size="15">gabrielmisao.com.br</text></g><circle cx="1010" cy="324" r="108" fill="#d3f36b"/><path d="M967 366l86-86m-74 0h74v74" stroke="#0b0b0a" stroke-width="8" fill="none"/></svg>`;
-await sharp(Buffer.from(svg)).png().toFile("public/social-preview.png");
+const svg = `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="630" fill="#0b0b0a"/><path d="M60 80H1140M60 548H1140" stroke="#45463b"/><g fill="#f0eee7" font-family="Arial, sans-serif"><text x="60" y="48" font-size="15" letter-spacing="2">CREATIVE DEVELOPER</text><text x="1140" y="48" text-anchor="end" font-size="15">DESIGN + CODE</text><text x="600" y="493" text-anchor="middle" font-size="27" letter-spacing="1">IDEIAS QUE GANHAM PRESENÇA.</text><text x="60" y="590" font-size="14" letter-spacing="1">DESIGN COM INTENÇÃO. CÓDIGO COM PRECISÃO.</text><text x="1140" y="590" text-anchor="end" font-size="15">gabrielmisao.com.br</text></g></svg>`;
+const logo = await sharp("src/assets/brand/logo-principal.png")
+  .resize({ width: 1080, withoutEnlargement: true })
+  .png()
+  .toBuffer();
+await sharp(Buffer.from(svg))
+  .composite([{ input: logo, left: 60, top: 94, blend: "lighten" }])
+  .png()
+  .toFile("public/social-preview.png");

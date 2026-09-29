@@ -39,11 +39,12 @@ O build verifica TypeScript estrito e gera `dist/`. Publique o conteúdo de `dis
 
 ```sh
 npm run assets:optimize
+npm run assets:brand
 npm run assets:social
 node scripts/check-links.mjs
 ```
 
-O primeiro comando gera WebP sem ampliar as imagens originais. O segundo atualiza a imagem social. As fontes são servidas localmente, sem requisições ao Google Fonts.
+`assets:optimize` gera WebP dos projetos sem ampliar os originais. `assets:brand` prepara as logos, os ícones e três tamanhos da foto de perfil. Os cinco arquivos enviados pelo proprietário ficam preservados em `src/assets/brand`. `assets:social` atualiza a imagem de compartilhamento usando a logo principal. As fontes são servidas localmente, sem requisições ao Google Fonts.
 
 Metadata, canonical, Open Graph, Twitter Card e JSON-LD estão em `index.html`. Sitemap e robots estão em `public/`. Para mudar de domínio, atualize esses três arquivos.
 
@@ -51,7 +52,7 @@ Metadata, canonical, Open Graph, Twitter Card e JSON-LD estão em `index.html`. 
 
 O hero tem três fases ligadas ao scroll: separação da tipografia, abertura das janelas e composição expandida. Os cases se sobrepõem enquanto o anterior recua em escala; a galeria do arquivo se desloca horizontalmente com a rolagem vertical. Essas duas cenas usam sticky nativo somente a partir de 1000 px de largura e 650 px de altura. Em telas menores, os projetos seguem em fluxo vertical com movimentos curtos.
 
-Manifesto, linhas de serviços e monograma têm animações próprias, com máscaras, deslocamento lateral e parallax. O processo tem índice sticky e conteúdo legível no fluxo. Framer Motion anima os links do menu. Lenis e cursor só entram em desktop com ponteiro preciso. O cursor do sistema permanece disponível.
+Manifesto e linhas de serviços têm animações próprias, com máscaras e deslocamento lateral. A foto real da seção Sobre tem parallax discreto dentro de uma moldura, sem girar o retrato. O processo tem índice sticky e conteúdo legível no fluxo. Framer Motion anima os links do menu. Lenis e cursor só entram em desktop com ponteiro preciso. O cursor do sistema permanece disponível.
 
 `prefers-reduced-motion` desativa as grandes animações, smooth scroll e sticky do hero. O botão no rodapé permite reduzir o movimento também por escolha do visitante. A preferência de redução do sistema sempre prevalece.
 

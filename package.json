@@ -12,7 +12,8 @@
     "typecheck": "tsc -b",
     "assets:optimize": "node scripts/optimize-assets.mjs",
     "format": "prettier --write src scripts index.html *.ts *.json *.js",
-    "assets:social": "node scripts/generate-social.mjs"
+    "assets:social": "node scripts/generate-social.mjs",
+    "assets:brand": "node scripts/prepare-brand.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",

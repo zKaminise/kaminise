@@ -4,6 +4,7 @@ import { useLayoutEffect, useRef } from "react";
 import { contact } from "@/data/site";
 import { ContactLink } from "./ProjectLink";
 import { gsap } from "@/lib/motion";
+import BrandLogo from "./BrandLogo";
 export default function Footer() {
   const reduced = useMotionPreference();
   const root = useRef<HTMLElement>(null);
@@ -13,8 +14,8 @@ export default function Footer() {
     media.add(
       "(prefers-reduced-motion: no-preference)",
       () => {
-        gsap.from(".footer-name", {
-          yPercent: 25,
+        gsap.from(".footer-brand", {
+          yPercent: 15,
           ease: "none",
           scrollTrigger: {
             trigger: root.current,
@@ -59,8 +60,8 @@ export default function Footer() {
         <ContactLink>Falar sobre meu projeto</ContactLink>
       </div>
       <div className="footer-details">
-        <div>
-          <strong>Gabriel Misao</strong>
+        <div className="footer-identity">
+          <BrandLogo variant="monogram" decorative />
           <span>Creative Developer · Brasil</span>
         </div>
         <div className="footer-social">
@@ -75,8 +76,8 @@ export default function Footer() {
           </a>
         </div>
       </div>
-      <div className="footer-name" aria-hidden="true">
-        MISAO<span>✳</span>
+      <div className="footer-brand">
+        <BrandLogo variant="principal" />
       </div>
       <MotionPreference />
       <div className="footer-bottom eyebrow">

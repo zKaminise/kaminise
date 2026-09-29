@@ -4,6 +4,7 @@ import { navigation } from "@/data/site";
 import { ContactLink } from "./ProjectLink";
 import { useMotionPreference } from "@/hooks/useMotionPreference";
 import { motionEase } from "@/lib/motion";
+import BrandLogo from "./BrandLogo";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function Header() {
           href="#inicio"
           aria-label="Gabriel Misao — início"
         >
-          gabriel misao<span className="brand-dot">✳</span>
+          <BrandLogo decorative loading="eager" />
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">
           {navigation.map((item) => (
@@ -66,7 +67,9 @@ export default function Header() {
         data-lenis-prevent
       >
         <div className="menu-top">
-          <span className="wordmark">gabriel misao✳</span>
+          <span className="wordmark">
+            <BrandLogo loading="eager" />
+          </span>
           <button
             onClick={() => setOpen(false)}
             autoFocus
