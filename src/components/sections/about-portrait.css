@@ -30,25 +30,19 @@
 .about .about-composition > .eyebrow {
   padding-top: 18px;
   gap: 12px;
+  flex-wrap: wrap;
+  font-size: 9px;
+  letter-spacing: 0.08em;
   line-height: 1.6;
 }
 
-.about .about-signature {
-  display: block;
-  width: min(100%, 460px);
-  height: auto;
-  margin-top: 24px;
-  mix-blend-mode: lighten;
+.about .about-copy {
+  align-self: center;
 }
 
 @media (max-width: 800px) {
   .about .about-composition {
     max-width: 440px;
-  }
-
-  .about .about-signature {
-    width: min(100%, 400px);
-    margin-top: 18px;
   }
 }
 

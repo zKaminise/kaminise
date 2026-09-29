@@ -6,8 +6,11 @@
 }
 .site-header .wordmark,
 .menu-top .wordmark {
-  display: block;
-  width: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  min-height: 48px;
   flex-shrink: 0;
   line-height: 1;
 }
@@ -38,7 +41,7 @@
 @media (max-width: 800px) {
   .site-header .wordmark,
   .menu-top .wordmark {
-    width: 174px;
+    width: 54px;
   }
   .footer-identity .brand-logo {
     width: 48px;

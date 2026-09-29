@@ -82,27 +82,16 @@ export default function About() {
         <p className="eyebrow section-kicker">
           04 / A PESSOA POR TRÁS DOS PIXELS
         </p>
-        <h2 id="about-title">
-          Muito prazer.
-          <img
-            className="about-signature"
-            src="/brand/logo-principal.webp"
-            width={1255}
-            height={420}
-            alt="Gabriel Misao"
-            loading="lazy"
-            decoding="async"
-          />
-        </h2>
+        <h2 id="about-title">Muito prazer.</h2>
         <p className="about-lead">
           Entre design, código e movimento,
           <br />
           eu encontro novas formas de comunicar.
         </p>
         <p>
-          Sou desenvolvedor e criador de experiências digitais. Trabalho
-          diretamente com você para transformar o que torna seu negócio único em
-          algo que as pessoas possam ver, entender e explorar.
+          Sou Gabriel Misao, desenvolvedor e criador de experiências digitais.
+          Trabalho diretamente com você para transformar o que torna seu negócio
+          único em algo que as pessoas possam ver, entender e explorar.
         </p>
         <p>
           Sites, landing pages, lojas e sistemas. Do conceito à publicação, cada

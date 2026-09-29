@@ -55,6 +55,7 @@ function FeaturedProject({
           <a
             className="text-link"
             href={project.url}
+            aria-label={`Visitar projeto ${project.title} em uma nova aba`}
             target="_blank"
             rel="noopener noreferrer"
             data-cursor="VIEW"
@@ -331,6 +332,7 @@ export default function SelectedProjects() {
                 <a
                   href={project.url}
                   className="text-link"
+                  aria-label={`Visitar projeto ${project.title} em uma nova aba`}
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="VIEW"
@@ -347,7 +349,7 @@ export default function SelectedProjects() {
                 rel="noopener noreferrer"
                 data-cursor="VIEW"
                 className={`archive-preview ${project.image.startsWith("case") ? "long-preview" : ""}`}
-                aria-label={`Visitar ${project.title}`}
+                aria-label={`Visitar ${project.title} em uma nova aba`}
               >
                 <ProjectImage project={project} />
               </a>
@@ -370,7 +372,11 @@ export default function SelectedProjects() {
                   <img
                     src={imageUrl(item.image, 640)}
                     srcSet={imageSet(item.image)}
-                    sizes="(max-width: 800px) 90vw, 30vw"
+                    sizes={
+                      reduced
+                        ? "(max-width: 800px) 90vw, 30vw"
+                        : "(max-width: 800px) 90vw, (min-width: 1000px) and (min-height: 650px) min(60vw, 1080px, calc(160svh - 480px)), 30vw"
+                    }
                     alt={`Design do site ${item.title}`}
                     width="1920"
                     height="1080"

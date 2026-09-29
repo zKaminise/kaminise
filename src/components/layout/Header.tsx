@@ -39,7 +39,7 @@ export default function Header() {
           href="#inicio"
           aria-label="Gabriel Misao — início"
         >
-          <BrandLogo decorative loading="eager" />
+          <BrandLogo variant="monogram" decorative loading="eager" />
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal">
           {navigation.map((item) => (
@@ -68,7 +68,7 @@ export default function Header() {
       >
         <div className="menu-top">
           <span className="wordmark">
-            <BrandLogo loading="eager" />
+            <BrandLogo variant="monogram" loading="eager" />
           </span>
           <button
             onClick={() => setOpen(false)}

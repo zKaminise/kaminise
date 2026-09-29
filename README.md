@@ -54,7 +54,7 @@ O hero tem três fases ligadas ao scroll: separação da tipografia, abertura da
 
 Manifesto e linhas de serviços têm animações próprias, com máscaras e deslocamento lateral. A foto real da seção Sobre tem parallax discreto dentro de uma moldura, sem girar o retrato. O processo tem índice sticky e conteúdo legível no fluxo. Framer Motion anima os links do menu. Lenis e cursor só entram em desktop com ponteiro preciso. O cursor do sistema permanece disponível.
 
-`prefers-reduced-motion` desativa as grandes animações, smooth scroll e sticky do hero. O botão no rodapé permite reduzir o movimento também por escolha do visitante. A preferência de redução do sistema sempre prevalece.
+`prefers-reduced-motion` desativa as grandes animações, smooth scroll e sticky do hero. O botão no rodapé permite reduzir o movimento também por escolha do visitante e salva essa escolha para as próximas visitas, quando o armazenamento está disponível. A preferência de redução do sistema sempre prevalece e é identificada no controle.
 
 O menu usa `dialog.showModal()` para contenção de foco, Escape e restauração de foco. Projetos, serviços e FAQ usam `details/summary`, com operação nativa por teclado e toque.
 

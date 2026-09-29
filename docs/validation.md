@@ -67,3 +67,25 @@ O conteúdo publicável está em `dist/`. Nenhuma configuração de domínio ou 
 - Controle manual de movimento reduzido e reativação verificados; transforms da foto e da marca no rodapé removidos no modo reduzido.
 - Ajustados a prioridade CSS da identidade do rodapé e o modo de mesclagem para integrar o fundo das logos às seções escuras, inclusive durante a animação.
 - `npm run build`, `npm run lint` e `git diff --check` aprovados. Console da prévia sem erros ou avisos durante esta revisão.
+
+## Revisão de usabilidade e marca — 29/09/2026
+
+### Diagnóstico e melhorias aplicadas
+
+- A logo horizontal ocupava espaço excessivo no cabeçalho. Navbar e menu agora usam somente o monograma, em 60 px no desktop e 54 px no mobile, preservando a área de toque e o nome acessível do link de início.
+- A assinatura visual duplicada abaixo de “Muito prazer” foi removida. O texto foi alinhado verticalmente com o retrato, e a apresentação identifica Gabriel Misao em texto normal.
+- Textos descritivos de 11–13 px dificultavam a leitura, sobretudo no mobile. Corpo de texto e respostas passaram a 15 px; CTAs, metadados e rodapé receberam ajustes de tamanho, quebra de linha e alvos de interação com pelo menos 44 px de altura.
+- O índice do Processo podia ficar sob o navbar de 88 px. Agora fica a 108 px do topo; em desktop com altura até 660 px, acompanha o fluxo normal para evitar conteúdo inacessível.
+- O mínimo de 320 px aplicado ao body desconsiderava a barra de rolagem em telas de 320 px. Removida essa restrição; largura útil de 305 px verificada sem rolagem horizontal.
+- O foco dos acordeões foi movido para dentro do controle, sem cruzar o texto da resposta. Links de projetos agora identificam o destino e a abertura em nova aba para leitores de tela.
+- A galeria animada podia selecionar imagens para 30vw e exibi-las a até 60vw. `sizes` agora acompanha a largura da composição, com alternativa para movimento reduzido; no teste a 1440×900 foram selecionadas as três imagens de 1280 px.
+- A escolha manual de movimento agora persiste após recarregar a página. A redução definida pelo sistema continua prevalecendo e aparece explicitamente no controle desabilitado. Armazenamento bloqueado mantém a escolha durante a visita, sem interromper a página.
+
+### Validação desta revisão
+
+- Build de produção com TypeScript estrito, lint e verificação de whitespace aprovados.
+- Layout verificado em 320×740, 360×800, 390×844, 768×1024, 1024×768, 1024×600, 1366×768 e 1440×900; sem overflow horizontal após os ajustes. Inspeção visual do hero, Sobre, menu mobile, Processo, serviços, FAQ, projeto expansível, galeria e página 404.
+- Menu abre, navega e fecha com Escape, devolvendo o foco ao botão. Serviços, FAQ e projetos abrem pelo teclado. Retorno da página 404 ao início confirmado.
+- Preferência de movimento reduzido permanece após reload; desativa transforms da foto e permite reativação. Verificações isoladas do hook também cobriram precedência do sistema e armazenamento indisponível.
+- Nenhum destino interno inexistente ou imagem carregada com falha encontrado. Verificações locais em Chromium, sem execução de Lighthouse ou testes em aparelhos físicos.
+- Nova checagem dos sete destinos externos: cinco HTTP 200; `script.kaminisegrowth.com.br` apresentou falha de DNS (`EAI_AGAIN`) e `ecosdaalma.com.br` respondeu HTTP 403. URLs preservadas; essas pendências dependem dos sites de destino.
