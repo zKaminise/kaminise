@@ -89,3 +89,15 @@ O conteúdo publicável está em `dist/`. Nenhuma configuração de domínio ou 
 - Preferência de movimento reduzido permanece após reload; desativa transforms da foto e permite reativação. Verificações isoladas do hook também cobriram precedência do sistema e armazenamento indisponível.
 - Nenhum destino interno inexistente ou imagem carregada com falha encontrado. Verificações locais em Chromium, sem execução de Lighthouse ou testes em aparelhos físicos.
 - Nova checagem dos sete destinos externos: cinco HTTP 200; `script.kaminisegrowth.com.br` apresentou falha de DNS (`EAI_AGAIN`) e `ecosdaalma.com.br` respondeu HTTP 403. URLs preservadas; essas pendências dependem dos sites de destino.
+
+## Projetos, orçamento e SEO — 01/10/2026
+
+- Hero com BRASA, Alçar Humà e Odontologia Flavia, sem barras de URL e com a transição preservada. BRASA e Salon 2Beauté ADN receberam capturas atuais das URLs fornecidas.
+- Quatro cards animados na ordem Alçar Humà, Odontologia Flavia, BRASA e Acquagyn. Cinco projetos adicionais, incluindo Salon. URLs de Leandro e Ecos atualizadas e abertas com sucesso no navegador.
+- Imagens fornecidas de Stanzza, Lightweight e Aevion aplicadas ao arquivo como referências de design. Lista de marcas atualizada automaticamente para os nove projetos.
+- Orçamento disponível no navbar também no celular, com área de toque de 44 px; WhatsApp centralizado em 5534998275292, telefone visível no contato e mensagem preenchida com informações para o briefing.
+- SEO com título, descrição, conteúdo de serviços, FAQ, dados estruturados e pré-renderização da mesma página React no HTML de produção. Navegação e animações hidratam normalmente, sem erros ou avisos no console observado.
+- `npm run build`, `npm run check:build`, `npm run lint` e `git diff --check` aprovados. O check de build verifica HTML pré-renderizado, um único H1, sequência dos quatro destaques, URLs novas, telefone, JSON-LD, sitemap, arquivos e larguras reais das variantes WebP.
+- Inspeção visual em desktop 1281×884 e celular 390×844 e 320×740. Verificados hero, BRASA, quarto card Acquagyn, acordeão Salon, galeria, serviços e contato. Sem overflow horizontal; imagens carregadas sem falhas. Menu mobile abre/fecha; projetos e controle de movimento respondem ao teclado.
+- Redução manual remove o sticky dos destaques; reativação restaura movimento. Preferência original de movimento completo restaurada, assim como o viewport do navegador.
+- Testes locais em Chromium. Indexação no Google não foi solicitada; instruções de Search Console e limites do SEO documentados em `docs/seo.md`.

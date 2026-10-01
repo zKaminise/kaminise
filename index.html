@@ -15,21 +15,21 @@
       imagesrcset="/images/portfolio-1-640.webp 640w, /images/portfolio-1-1280.webp 1280w, /images/portfolio-1-1920.webp 1920w"
       imagesizes="(max-width: 800px) 55vw, 27vw"
     />
-    <title>Gabriel Misao — Criação de Sites & Experiências Digitais</title>
+    <title>Gabriel Misao | Desenvolvedor Web e Criação de Sites</title>
     <meta
       name="description"
-      content="Desenvolvimento de sites, landing pages, lojas virtuais e experiências digitais modernas com foco em design, performance e conversão."
+      content="Criação de sites profissionais, landing pages e lojas virtuais com Gabriel Misao, desenvolvedor web independente. Peça seu orçamento pelo WhatsApp."
     />
     <meta name="author" content="Gabriel Misao" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Gabriel Misao" />
     <meta
       property="og:title"
-      content="Gabriel Misao — Ideias que ganham presença."
+      content="Gabriel Misao | Desenvolvedor Web e Criação de Sites"
     />
     <meta
       property="og:description"
-      content="Design com intenção. Código com precisão. Conheça meus projetos e vamos criar a próxima experiência digital da sua marca."
+      content="Criação de sites profissionais, landing pages e lojas virtuais com Gabriel Misao, desenvolvedor web independente. Peça seu orçamento pelo WhatsApp."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://gabrielmisao.com.br/" />
@@ -46,11 +46,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Gabriel Misao — Criação de Sites & Experiências Digitais"
+      content="Gabriel Misao | Desenvolvedor Web e Criação de Sites"
     />
     <meta
       name="twitter:description"
-      content="Sites, landing pages, lojas virtuais e sistemas com identidade própria."
+      content="Criação de sites profissionais, landing pages e lojas virtuais com Gabriel Misao, desenvolvedor web independente. Peça seu orçamento pelo WhatsApp."
     />
     <meta
       name="twitter:image"
@@ -59,21 +59,54 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Gabriel Misao",
-        "image": "https://gabrielmisao.com.br/brand/gabriel-misao-portrait-800.webp",
-        "url": "https://gabrielmisao.com.br/",
-        "jobTitle": "Creative Developer",
-        "sameAs": [
-          "https://www.instagram.com/gabrielmisao.dev",
-          "https://www.linkedin.com/in/gabrielkaminise/"
-        ],
-        "knowsAbout": [
-          "Web design",
-          "Desenvolvimento web",
-          "Landing pages",
-          "E-commerce",
-          "Sistemas web"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://gabrielmisao.com.br/#gabriel",
+            "name": "Gabriel Misao",
+            "url": "https://gabrielmisao.com.br/",
+            "image": "https://gabrielmisao.com.br/brand/gabriel-misao-portrait-800.webp",
+            "jobTitle": "Desenvolvedor web e web designer",
+            "telephone": "+55-34-99827-5292",
+            "sameAs": [
+              "https://www.instagram.com/gabrielmisao.dev",
+              "https://www.linkedin.com/in/gabrielkaminise/"
+            ],
+            "knowsAbout": [
+              "Criação de sites",
+              "Desenvolvimento web",
+              "Web design",
+              "Landing pages",
+              "E-commerce",
+              "Sistemas web"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://gabrielmisao.com.br/#website",
+            "url": "https://gabrielmisao.com.br/",
+            "name": "Gabriel Misao — Criação de sites",
+            "inLanguage": "pt-BR",
+            "publisher": {
+              "@id": "https://gabrielmisao.com.br/#gabriel"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://gabrielmisao.com.br/#servicos",
+            "name": "Criação de sites e desenvolvimento web",
+            "serviceType": [
+              "Criação de sites institucionais",
+              "Desenvolvimento de landing pages",
+              "Criação de lojas virtuais",
+              "Desenvolvimento de sistemas web"
+            ],
+            "url": "https://gabrielmisao.com.br/#servicos",
+            "description": "Design e desenvolvimento de sites responsivos com atendimento direto, do briefing à publicação.",
+            "provider": {
+              "@id": "https://gabrielmisao.com.br/#gabriel"
+            }
+          }
         ]
       }
     </script>
@@ -81,24 +114,18 @@
   <body>
     <div id="root"></div>
     <noscript
-      ><main
-        style="
-          padding: 40px;
-          background: #0b0b0a;
-          color: #f0eee7;
-          font-family: Arial;
-        "
-      >
-        <h1>Gabriel Misao — Design e desenvolvimento web</h1>
-        <p>
-          Sites, landing pages, lojas virtuais e sistemas com identidade
-          própria.
-        </p>
-        <p>Ative o JavaScript para explorar o portfólio interativo.</p>
-        <a style="color: #d3f36b" href="https://wa.me/5534998275292"
-          >Converse comigo pelo WhatsApp</a
-        >
-      </main></noscript
+      ><style>
+        .hero.hero-motion {
+          height: auto;
+        }
+        .hero-stage {
+          position: relative;
+        }
+        .motion-preference,
+        .menu-button {
+          display: none;
+        }
+      </style></noscript
     >
     <script type="module" src="/src/main.tsx"></script>
   </body>

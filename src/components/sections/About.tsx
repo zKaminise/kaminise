@@ -89,7 +89,7 @@ export default function About() {
           eu encontro novas formas de comunicar.
         </p>
         <p>
-          Sou Gabriel Misao, desenvolvedor e criador de experiências digitais.
+          Sou Gabriel Misao, desenvolvedor web independente e web designer.
           Trabalho diretamente com você para transformar o que torna seu negócio
           único em algo que as pessoas possam ver, entender e explorar.
         </p>

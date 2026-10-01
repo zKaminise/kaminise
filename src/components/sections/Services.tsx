@@ -1,3 +1,4 @@
+import { ContactLink } from "../layout/ProjectLink";
 import { services } from "@/data/site";
 import { imageUrl } from "@/data/projects";
 import { useLayoutEffect, useRef } from "react";
@@ -74,14 +75,15 @@ export default function Services() {
         <div>
           <p className="eyebrow section-kicker">02 / O QUE EU CRIO</p>
           <h2 id="services-title">
-            Sua ideia.
+            Criação de sites.
             <br />
-            <span className="serif">A forma certa.</span>
+            <span className="serif">Para o seu negócio.</span>
           </h2>
         </div>
         <p>
-          Da primeira página a um sistema completo.
-          <br />O formato muda. O cuidado, não.
+          Sites responsivos, landing pages e sistemas web sob medida.
+          <br />
+          Design, desenvolvimento e orientação para a publicação.
         </p>
       </div>
       <div className="services-list">
@@ -106,6 +108,9 @@ export default function Services() {
                 <h4>{service.subtitle}</h4>
                 <p>{service.description}</p>
                 <span className="eyebrow">{service.tags}</span>
+                <ContactLink className="service-contact">
+                  Solicitar orçamento
+                </ContactLink>
               </div>
               <img
                 src={imageUrl(service.image)}

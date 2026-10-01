@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -13,7 +13,8 @@
     "assets:optimize": "node scripts/optimize-assets.mjs",
     "format": "prettier --write src scripts index.html *.ts *.json *.js",
     "assets:social": "node scripts/generate-social.mjs",
-    "assets:brand": "node scripts/prepare-brand.mjs"
+    "assets:brand": "node scripts/prepare-brand.mjs",
+    "check:build": "node scripts/check-build.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",

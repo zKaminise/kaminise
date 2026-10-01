@@ -1,7 +1,7 @@
 import { useMotionPreference } from "@/hooks/useMotionPreference";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "@/lib/motion";
-import { imageSet, imageUrl, projects } from "@/data/projects";
+import { imageSet, imageUrl, heroProjects } from "@/data/projects";
 import { Arrow } from "../layout/ProjectLink";
 import "./hero-motion.css";
 
@@ -231,7 +231,7 @@ export default function Hero() {
     >
       <div className="hero-stage">
         <div className="hero-topline eyebrow">
-          <span>DESIGN & DESENVOLVIMENTO INDEPENDENTE</span>
+          <span>DESENVOLVEDOR WEB · CRIAÇÃO DE SITES</span>
           <span>
             BRASIL · DISPONÍVEL PARA PROJETOS <i />
           </span>
@@ -257,16 +257,11 @@ export default function Hero() {
               </span>
               <div className="orbit orbit-one" />
               <div className="orbit orbit-two" />
-              {[projects[2], projects[0], projects[1]].map((project, index) => (
+              {heroProjects.map((project, index) => (
                 <div
                   className={`hero-screen hero-screen-${["back", "middle", "front"][index]}`}
                   key={project.id}
                 >
-                  <div className="mini-browser">
-                    <span>● ● ●</span>
-                    <span>{new URL(project.url).hostname}</span>
-                    <span>↗</span>
-                  </div>
                   <img
                     src={imageUrl(project.image, 640)}
                     srcSet={imageSet(project.image)}
@@ -292,8 +287,8 @@ export default function Hero() {
             </span>
           </a>
           <p>
-            Sou Gabriel Misao. Crio sites e experiências digitais que dão à sua
-            marca uma presença à altura.
+            Sou Gabriel Misao, desenvolvedor web. Crio sites profissionais e
+            landing pages para apresentar sua marca e facilitar novos contatos.
           </p>
           <span className="hero-index eyebrow">
             SCROLL TO DISCOVER

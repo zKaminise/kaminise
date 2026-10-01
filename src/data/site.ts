@@ -1,5 +1,5 @@
 export const contact = {
-  whatsapp: `https://wa.me/5534998275292?text=${encodeURIComponent("Olá Gabriel! Vi seu portfólio e gostaria de conversar sobre a criação de um site.")}`,
+  whatsapp: `https://wa.me/5534998275292?text=${encodeURIComponent("Olá Gabriel! Vi seu portfólio e gostaria de um orçamento para criar ou renovar meu site. Meu negócio é: ___. Preciso de: ___. Meu prazo desejado é: ___.")}`,
   instagram: "https://www.instagram.com/gabrielmisao.dev",
   linkedin: "https://www.linkedin.com/in/gabrielkaminise/",
 };
@@ -88,6 +88,14 @@ export const processSteps = [
   },
 ];
 export const faqs = [
+  [
+    "Você é uma agência de criação de sites?",
+    "Sou Gabriel Misao, desenvolvedor web independente. Se você está comparando agências e profissionais para criar seu site, aqui você conversa diretamente com quem cuida do design e do desenvolvimento. A proposta define as entregas, as revisões e o prazo do seu projeto.",
+  ],
+  [
+    "Meu site poderá aparecer no Google?",
+    "O desenvolvimento pode incluir estrutura de conteúdo, títulos, descrições, versão para celular e configurações técnicas de SEO. O escopo é definido na proposta. Indexação e posição nas buscas dependem do Google, da concorrência e da qualidade do conteúdo; não há garantia de primeira posição.",
+  ],
   [
     "Quanto tempo leva para o site ficar pronto?",
     "O prazo depende do número de páginas, das funcionalidades e da disponibilidade do conteúdo. Depois do briefing, você recebe um cronograma com preview, revisões e publicação. Tudo é combinado antes de começar.",

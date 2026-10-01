@@ -54,15 +54,27 @@ export default function Footer() {
       </div>
       <div className="footer-conversation">
         <p>
-          Se você tem uma empresa, produto ou ideia e quer apresentar isso de um
-          jeito próprio, vamos conversar.
+          Precisa criar um site ou renovar o atual? Me conte seu tipo de
+          negócio, o que você precisa e o prazo desejado. Você recebe uma
+          proposta com escopo, investimento e etapas definidas.
         </p>
-        <ContactLink>Falar sobre meu projeto</ContactLink>
+        <div className="budget-contact">
+          <ContactLink>Pedir orçamento pelo WhatsApp</ContactLink>
+          <a
+            className="budget-phone"
+            href={contact.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            (34) 99827-5292
+          </a>
+          <span>Atendimento direto com Gabriel Misao.</span>
+        </div>
       </div>
       <div className="footer-details">
         <div className="footer-identity">
           <BrandLogo variant="monogram" decorative />
-          <span>Creative Developer · Brasil</span>
+          <span>Desenvolvedor web · Brasil</span>
         </div>
         <div className="footer-social">
           <a href={contact.instagram} target="_blank" rel="noopener noreferrer">

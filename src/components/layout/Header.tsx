@@ -48,7 +48,14 @@ export default function Header() {
             </a>
           ))}
         </nav>
-        <ContactLink className="header-contact">Iniciar projeto</ContactLink>
+        <ContactLink
+          className="header-contact"
+          aria-label="Pedir orçamento pelo WhatsApp"
+        >
+          <span>
+            <span className="contact-verb">Pedir </span>orçamento
+          </span>
+        </ContactLink>
         <button
           className="menu-button"
           onClick={() => setOpen(true)}
@@ -108,7 +115,7 @@ export default function Header() {
           ))}
         </motion.nav>
         <ContactLink onClick={() => setOpen(false)}>
-          Falar sobre meu projeto
+          Pedir orçamento pelo WhatsApp
         </ContactLink>
         <p className="eyebrow">CREATIVE DEVELOPER · BRASIL</p>
       </dialog>

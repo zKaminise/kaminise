@@ -1,6 +1,9 @@
 import { useSyncExternalStore } from "react";
 
-const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+const query =
+  typeof window === "undefined"
+    ? undefined
+    : window.matchMedia("(prefers-reduced-motion: reduce)");
 const storageKey = "gabriel-misao:reduced-motion";
 
 function readManualReduction() {
@@ -13,14 +16,14 @@ function readManualReduction() {
 
 let manualReduction = readManualReduction();
 const listeners = new Set<() => void>();
-const snapshot = () => manualReduction || query.matches;
-const systemSnapshot = () => query.matches;
+const snapshot = () => manualReduction || !!query?.matches;
+const systemSnapshot = () => !!query?.matches;
 function subscribe(listener: () => void) {
   listeners.add(listener);
-  query.addEventListener("change", listener);
+  query?.addEventListener("change", listener);
   return () => {
     listeners.delete(listener);
-    query.removeEventListener("change", listener);
+    query?.removeEventListener("change", listener);
   };
 }
 export function useMotionPreference() {
@@ -30,7 +33,7 @@ export function useSystemMotionPreference() {
   return useSyncExternalStore(subscribe, systemSnapshot, () => true);
 }
 export function toggleMotionReduction() {
-  if (query.matches) return;
+  if (query?.matches) return;
   manualReduction = !manualReduction;
   try {
     window.localStorage.setItem(storageKey, String(manualReduction));

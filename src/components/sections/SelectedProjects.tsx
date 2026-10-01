@@ -4,7 +4,9 @@ import { gsap, ScrollTrigger } from "@/lib/motion";
 import {
   imageSet,
   imageUrl,
-  projects,
+  featuredProjects,
+  moreProjects,
+  imageDimensions,
   visualArchive,
   type Project,
 } from "@/data/projects";
@@ -20,8 +22,8 @@ function ProjectImage({ project }: { project: Project }) {
       loading="lazy"
       decoding="async"
       alt={`Página inicial do projeto ${project.title}`}
-      width={project.image.startsWith("portfolio") ? 1920 : 385}
-      height={project.image.startsWith("portfolio") ? 1080 : 1920}
+      width={imageDimensions(project.image).width}
+      height={imageDimensions(project.image).height}
     />
   );
 }
@@ -100,8 +102,8 @@ function FeaturedProject({
 export default function SelectedProjects() {
   const reduced = useMotionPreference();
   const root = useRef<HTMLElement>(null);
-  const featured = [projects[0], projects[1], projects[4]];
-  const more = [projects[2], projects[3], projects[5], projects[6]];
+  const featured = featuredProjects;
+  const more = moreProjects;
   useLayoutEffect(() => {
     if (reduced) return;
     const media = gsap.matchMedia();
@@ -360,7 +362,7 @@ export default function SelectedProjects() {
       <div className="visual-archive">
         <div className="archive-sticky">
           <div className="archive-heading">
-            <p className="eyebrow">DO ARQUIVO / MAIS EXPLORAÇÕES VISUAIS</p>
+            <p className="eyebrow">DO ARQUIVO / REFERÊNCIAS VISUAIS</p>
             <span className="archive-direction eyebrow" aria-hidden="true">
               CONTINUE O SCROLL ↘
             </span>
@@ -378,8 +380,8 @@ export default function SelectedProjects() {
                         : "(max-width: 800px) 90vw, (min-width: 1000px) and (min-height: 650px) min(60vw, 1080px, calc(160svh - 480px)), 30vw"
                     }
                     alt={`Design do site ${item.title}`}
-                    width="1920"
-                    height="1080"
+                    width={imageDimensions(item.image).width}
+                    height={imageDimensions(item.image).height}
                     loading="lazy"
                     decoding="async"
                   />
@@ -398,7 +400,7 @@ export default function SelectedProjects() {
       </div>
       <div className="work-cta">
         <p>O próximo projeto pode ser o seu.</p>
-        <ContactLink>Vamos tirar sua ideia do papel</ContactLink>
+        <ContactLink>Pedir orçamento pelo WhatsApp</ContactLink>
       </div>
     </section>
   );

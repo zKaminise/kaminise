@@ -418,6 +418,7 @@ summary::-webkit-details-marker {
 .hero-screen img {
   width: 100%;
   height: auto;
+  display: block;
 }
 .hero-screen-back {
   width: 61%;
@@ -437,21 +438,6 @@ summary::-webkit-details-marker {
   width: 57%;
   transform: rotate(8deg) translateZ(40px);
   z-index: 3;
-}
-.mini-browser {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
-  background: #181a16;
-  color: #bdbfb5;
-  font-family: monospace;
-  font-size: 6px;
-  padding: 6px 9px;
-}
-.mini-browser > span:first-child {
-  letter-spacing: 2px;
-  font-size: 5px;
 }
 .orbit {
   position: absolute;
@@ -1398,9 +1384,6 @@ details[open] .expand-sign {
   .process-sticky {
     top: 108px;
   }
-  .mini-browser {
-    font-size: 10px;
-  }
   .hero-heading-wrap {
     margin-top: 7vh;
   }
@@ -1507,8 +1490,17 @@ details[open] .expand-sign {
   .wordmark {
     font-size: 23px;
   }
-  .desktop-nav,
-  .header-contact {
+  .desktop-nav {
+    display: none;
+  }
+  .site-header .header-contact {
+    display: inline-flex;
+    margin-left: auto;
+    gap: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .contact-verb {
     display: none;
   }
   .menu-button {
@@ -2178,4 +2170,28 @@ html[data-reduced-motion="true"] .custom-cursor {
   .hero-stage {
     min-height: max(780px, 100svh);
   }
+}
+
+/* Clear budget details remain available alongside the editorial contact CTA. */
+.budget-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+.budget-phone {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--acid);
+  font-size: 20px;
+}
+.budget-contact > span {
+  color: var(--quiet);
+  font-size: 14px;
+}
+.service-contact {
+  display: inline-flex;
+  margin-top: 24px;
 }

@@ -1,0 +1,356 @@
+{
+  "case-01": {
+    "width": 927,
+    "height": 1920,
+    "variants": [
+      {
+        "file": "case-01-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "case-02": {
+    "width": 541,
+    "height": 1920,
+    "variants": [
+      {
+        "file": "case-02-800.webp",
+        "width": 541
+      }
+    ]
+  },
+  "case-03": {
+    "width": 366,
+    "height": 1920,
+    "variants": [
+      {
+        "file": "case-03-800.webp",
+        "width": 366
+      }
+    ]
+  },
+  "case-04": {
+    "width": 385,
+    "height": 1920,
+    "variants": [
+      {
+        "file": "case-04-800.webp",
+        "width": 385
+      }
+    ]
+  },
+  "case-05": {
+    "width": 1099,
+    "height": 1920,
+    "variants": [
+      {
+        "file": "case-05-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "case-06": {
+    "width": 484,
+    "height": 1920,
+    "variants": [
+      {
+        "file": "case-06-800.webp",
+        "width": 484
+      }
+    ]
+  },
+  "case-07": {
+    "width": 510,
+    "height": 1920,
+    "variants": [
+      {
+        "file": "case-07-800.webp",
+        "width": 510
+      }
+    ]
+  },
+  "mockup-landing": {
+    "width": 800,
+    "height": 512,
+    "variants": [
+      {
+        "file": "mockup-landing-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "mockup-loja": {
+    "width": 512,
+    "height": 512,
+    "variants": [
+      {
+        "file": "mockup-loja-800.webp",
+        "width": 512
+      }
+    ]
+  },
+  "mockup-sistema": {
+    "width": 512,
+    "height": 512,
+    "variants": [
+      {
+        "file": "mockup-sistema-800.webp",
+        "width": 512
+      }
+    ]
+  },
+  "mockup-sites": {
+    "width": 800,
+    "height": 512,
+    "variants": [
+      {
+        "file": "mockup-sites-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "portfolio-1": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-1-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-1-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-1-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-2": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-2-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-2-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-2-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-3": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-3-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-3-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-3-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-4": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-4-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-4-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-4-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-5": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-5-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-5-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-5-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-6": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-6-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-6-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-6-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-7": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-7-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-7-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-7-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-8": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-8-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-8-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-8-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-9": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "file": "portfolio-9-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-9-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-9-1920.webp",
+        "width": 1920
+      }
+    ]
+  },
+  "portfolio-brasa": {
+    "width": 1265,
+    "height": 712,
+    "variants": [
+      {
+        "file": "portfolio-brasa-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-brasa-1280.webp",
+        "width": 1265
+      }
+    ]
+  },
+  "portfolio-ref-aevion": {
+    "width": 1705,
+    "height": 1010,
+    "variants": [
+      {
+        "file": "portfolio-ref-aevion-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-ref-aevion-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-ref-aevion-1920.webp",
+        "width": 1705
+      }
+    ]
+  },
+  "portfolio-ref-lightweight": {
+    "width": 1715,
+    "height": 1024,
+    "variants": [
+      {
+        "file": "portfolio-ref-lightweight-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-ref-lightweight-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-ref-lightweight-1920.webp",
+        "width": 1715
+      }
+    ]
+  },
+  "portfolio-ref-stanzza": {
+    "width": 1714,
+    "height": 1009,
+    "variants": [
+      {
+        "file": "portfolio-ref-stanzza-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-ref-stanzza-1280.webp",
+        "width": 1280
+      },
+      {
+        "file": "portfolio-ref-stanzza-1920.webp",
+        "width": 1714
+      }
+    ]
+  },
+  "portfolio-salon": {
+    "width": 1265,
+    "height": 712,
+    "variants": [
+      {
+        "file": "portfolio-salon-640.webp",
+        "width": 640
+      },
+      {
+        "file": "portfolio-salon-1280.webp",
+        "width": 1265
+      }
+    ]
+  }
+}
